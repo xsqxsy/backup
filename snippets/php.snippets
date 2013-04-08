@@ -13,7 +13,7 @@ snippet php.    跨行标签
 
 	?>
 snippet pe      输出标签
-	<?php echo $${1}; ?>
+	<?php echo ${1}; ?>
 snippet pp      输出标签 [PHP 5.4起默认可用]
 	<?= ${1} ?>
 snippet doc     跨行文本
@@ -417,26 +417,29 @@ snippet c_wh    分离while
 snippet c_ewh   endwhile
 	<?php endwhile; ?>${1}
 ################
-# Laravel框架
-# Laravel Blade模板引擎
-snippet b_      {{ ... }}
-	{{ ${1} }}
-snippet b_if    if
-	@if (${1})
-	${2}
-	@endif
-snippet b_elif  elseif
-	@elseif (${1})
-	${2}
-snippet b_el    else
-	@else
-	${1}
-snippet b_fo    for
-	@for (${1})
-	${2}
-	@endfor
-snippet b_fe    foreach
-	@foreach (${1})
-	${2}
-	@endforeach
+# phpDocumentor文档化注释
+snippet d_co    常量
+	@const ${1}
+snippet d_va    变量
+	@var ${1}
+snippet d_st    静态变量
+	@static ${1}
+snippet d_gl    全局变量
+	@global ${1}
+snippet d_pm    函数参数
+	@param ${1}
+snippet d_re    返回值
+	@return ${1}
+snippet d_ig    忽略
+	@ingore ${1}
+snippet d_de    废弃或不推荐使用
+	@deprecated ${1}
+snippet d_td    待实现或改进的功能
+	@todo ${1}
+snippet d_au    作者
+	@author ${1}
+snippet d_ve    版本信息
+	@version ${1}
+snippet d_li    可以链接到指定关键字
+	@link ${1}
 ################

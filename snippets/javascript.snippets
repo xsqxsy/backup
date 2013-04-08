@@ -5,8 +5,7 @@ snippet //      多行注释
 snippet -       分隔注释
 	// -------------------------------${1}
 snippet us      严格模式
-	"use strict";
-	${1}
+	"use strict";${1}
 snippet f       常规函数
 	function ${1:f_name} (${2}) {
 	  ${3}
@@ -84,6 +83,7 @@ snippet paI     转换为整数
 	parseInt(${1});
 snippet paF     转换为浮点数
 	parseFloat(${1});
+################
 # DOM相关
 snippet gelbi   getElementById
 	getElementById('${1}')
@@ -101,12 +101,4 @@ snippet .       jQuery选择器
 	$(${1})
 snippet >       jQuery选择器（带引号）
 	$('${1}')${2}
-snippet >>      jQuery选择器（带分号）
-	$(${1});
-################
-# Node相关
-snippet n_rq    包含模块
-	require('${1}');${2}
-snippet n_p     输出
-	console_log(${1});
 ################

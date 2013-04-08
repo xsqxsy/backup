@@ -1,0 +1,62 @@
+snippet /       单行注释
+	{{-- ${1} --}}
+snippet //      多行注释
+	{{--${1}
+	--}}
+# 模板复用
+snippet in      包含模板（继承当前模板的数据）
+	@include('${1}')${2}
+snippet re      包含模板（不继承数据）
+	@render('${1}')${2}
+snippet ex      extends
+	@extends('${1}')${2}
+snippet se      section
+	@section('${1}')
+	  ${2}
+	@endsection
+# 流程控制
+snippet if      if
+	@if (${1})
+	  ${2}
+	@endif
+snippet ul      unless（与if相反）
+	@unless (${1})
+	  ${2}
+	@endunless
+snippet elif    elseif
+	@elseif (${1})
+	  ${2}
+snippet el      else
+	@else
+	  ${1}
+snippet foel    forelse
+	@forelse (${1})
+	  ${2}
+	@empty
+	  ${3}
+	@endforelse
+snippet fo      for
+	@for (${1})
+	  ${2}
+	@endfor
+snippet e       each
+	@each(${1})
+snippet fe      foreach
+	@foreach (${1})
+	  ${2}
+	@endforeach
+snippet wh      while
+	@while (${1})
+	  ${2}
+	@endwhile
+# 其他
+snippet la      布局
+	@layout('${1}')
+snippet yi      yield
+	@yield('${1}')
+snippet pa      parent
+	@parent${1}
+snippet st      stop
+	@stop${1}
+snippet .       {{ ... }}
+	{{ ${1} }}
