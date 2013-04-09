@@ -3,7 +3,7 @@ snippet /       单行注释
 # 函数的定义和变量的声明
 snippet la      匿名函数
 	lambda (${1})${2}
-snippet d       函数定义
+snippet df      函数定义
 	defun ${1} (${2})${3}
 snippet dv      定义全局变量
 	defvar ${1}
@@ -11,14 +11,12 @@ snippet s       变量赋值
 	setf ${1}
 snippet g       索引属性表（相当与散列）的元素值
 	getf ${1}
-snippet *       全局变量
-	*${1}*${2}
 # 控制结构
 snippet if      if
 	if (${1}) (${2})
 snippet lo      循环
 	loop (${1})
-snippet dol     列表循环
+snippet dli     列表循环
 	dolist (${1})
 # 单个关键字
 snippet re      返回
@@ -38,18 +36,18 @@ snippet wrl     输出一行
 	write-line ${1}
 # 常用函数
 snippet foo     force-output
-	force-output ${1}
+	force-output${1}
 snippet rel     read-line
-	read-line ${1}
+	read-line${1}
 snippet pai     parse-integer
-	parse-integer ${1}
+	parse-integer${1}
 snippet yonp    y-or-n-p
-	y-or-n-p ${1}
+	y-or-n-p${1}
 snippet wiof    with-open-file
 	with-open-file (${1})
 snippet wisis   with-standard-io-syntax
-	with-standard-io-syntax ${1}
+	with-standard-io-syntax${1}
 snippet rein    筛选
-	remove-if-not ${1}
+	remove-if-not${1}
 snippet rip     ripped-p
 	ripped-p ${1}

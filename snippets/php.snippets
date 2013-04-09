@@ -244,6 +244,8 @@ snippet spr     格式化输出给一个字符串
 snippet nuf     数值格式化
 	number_format(${1})
 # 调试
+snippet ee      输出信息，并终止执行
+	echo ${1};  exit();
 snippet vd      打印详细的变量信息
 	var_dump(${1});
 snippet ve      打印易读的变量信息
@@ -376,21 +378,49 @@ snippet jsd     JSON数据的解码
 	json_decode(${1})
 ################
 # CodeIgniter框架
-snippet c_lol   加载类库
+snippet c_ll    加载类库
 	$this->load->library('${1}');
-snippet c_lom   加载模型
+snippet c_lm    加载模型
 	$this->load->model('${1}');
-snippet c_lov   加载视图
+snippet c_lv    加载视图
 	$this->load->view('${1}'${2});
-snippet c_loh   加载辅助函数
+snippet c_lh    加载辅助函数
 	$this->load->helper('${1}');
-snippet c_lod   加载数据库
+snippet c_ld    加载数据库
 	$this->load->database();${1}
-snippet c_coi   加载config文件中的配置项
+snippet c_ldf   加载数据库维护
+	$this->load->dbforge();${1}
+snippet c_cl    加载配置文件
+	$this->config->load('${1}');
+snippet c_ci    获取配置项
 	$this->config->item('${1}');
+snippet c_csi   设置配置项
+	$this->config->set_item('${1}', '${2}');
 # CodeIgniter辅助函数
 snippet c_msg   写入日志
-	log_message('${1:info}', '${2}');
+	log_message('${1}');
+snippet c_err   显示错误信息
+	show_error('${1}');
+snippet c_404   显示404页面
+	show_404();${1}
+snippet c_coi   获取配置项
+	config_item('${1}');
+snippet c_sur   基于首页的地址
+	site_url('${1}');
+snippet c_bur   网站基准地址
+	base_url();${1}
+snippet c_cur   当前地址
+	current_url();${1}
+snippet c_pur   给链接添加http://前缀
+	prep_url(${1});
+snippet c_anc   锚地址
+	anchor(${1});
+snippet c_mai   Email链接
+	mailto(${1});
+snippet c_uti   从字符串生成URL字串
+	url_title(${1});
+snippet c_red   转向
+	redirect('${1}', '${2:refresh}');
 # CodeIgniter模板
 snippet c_if    分离if
 	<?php if (${1}): ?>${2}
@@ -416,30 +446,4 @@ snippet c_wh    分离while
 	<?php endwhile; ?>
 snippet c_ewh   endwhile
 	<?php endwhile; ?>${1}
-################
-# phpDocumentor文档化注释
-snippet d_co    常量
-	@const ${1}
-snippet d_va    变量
-	@var ${1}
-snippet d_st    静态变量
-	@static ${1}
-snippet d_gl    全局变量
-	@global ${1}
-snippet d_pm    函数参数
-	@param ${1}
-snippet d_re    返回值
-	@return ${1}
-snippet d_ig    忽略
-	@ingore ${1}
-snippet d_de    废弃或不推荐使用
-	@deprecated ${1}
-snippet d_td    待实现或改进的功能
-	@todo ${1}
-snippet d_au    作者
-	@author ${1}
-snippet d_ve    版本信息
-	@version ${1}
-snippet d_li    可以链接到指定关键字
-	@link ${1}
 ################
