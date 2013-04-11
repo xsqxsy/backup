@@ -1,0 +1,32 @@
+snippet /       单行注释
+	; ${1}
+snippet //      多行注释
+	(comment ${1})
+snippet -       分隔注释
+	; -------------------------------${1}
+# 包、命令空间、类
+snippet im      导入包
+	import${1}
+# 结构定义
+snippet d       变量赋值
+	def ${1}
+snippet dn      函数定义
+	defn ${1:f_name} [${2:f_arg}]
+	  (${3:f_body})
+snippet dp      定义项目
+	defproject ${1}
+# 流程控制
+# 单个关键字
+snippet l       let
+	let ${1}
+snippet s       set
+	set ${1}
+snippet li      链表
+	list ${1}
+snippet ve      vector
+	vector ${1}
+# 输入输出
+snippet p       输出 [不换行]
+	print ${1}
+snippet pn      输出 [换行]
+	println ${1}
