@@ -2,35 +2,71 @@ snippet /       单行注释
 	;; ${1}
 snippet -       分隔注释
 	;; -------------------------------${1}
-# 函数的定义和变量的声明
-snippet la      匿名函数
-	lambda (${1})${2}
-snippet df      函数定义
-	defun ${1} (${2})${3}
+# 类、函数、数据的定义
+snippet d       函数定义
+	(defun ${1} (${2})${3})
+snippet dm      宏定义
+	(defmacro ${1} (${2})${3})
+snippet dg      广义函数
+	(defgeneric ${1} (${2})${3})
+snippet dc      类定义
+	(defclass ${1} (${2})${3})
 snippet dv      定义全局变量
-	defvar ${1}
-snippet s       变量赋值
-	setf ${1}
-snippet g       索引属性表（相当与散列）的元素值
-	getf ${1}
+	(defvar ${1})
+snippet dpa     定义全局变量
+	(defparameter ${1})
+snippet dco     定义全局常量
+	(defconstant ${1})
+snippet la      匿名函数
+	(lambda (${1})${2})
 # 控制结构
 snippet if      if
-	if (${1}) (${2})
+	if (${1})${2}
 snippet lo      循环
-	loop (${1})
-snippet dli     列表循环
-	dolist (${1})
+	loop ${1}
+snippet do      通用迭代
+	do ((${1})${2})${3}
+snippet dl      列表迭代
+	dolist (${1})${2}
+snippet dt      指定循环次数
+	dotimes ${1}
 # 单个关键字
 snippet re      返回
-	return${1}
+	return ${1}
+snippet ref     从 .. 返回
+	return-from ${1}
 snippet li      列表
 	list ${1}
-snippet m       mapcar
-	mapcar${1}
-snippet pu      插入元素
+snippet qu      返回列表
+	quote ${1}
+snippet col     收集
+	collecting${1}
+snippet s       赋值
+	setf ${1}
+snippet g       取值
+	getf ${1}
+snippet l       设置局部变量
+	let ((${1})${2})${3}
+snippet pu      压入元素
 	push ${1}
+snippet po      弹出元素
+	pop ${1}
+snippet f       获取一个函数对象（#'是其语法糖）
+	function ${1}
+snippet lam     匿名函数
+	lambda${1}
+snippet app     调用函数对象（最后一个参数必须是列表）
+	apply #'${1}
+snippet fca     调用函数对象（参数必须是单个的值）
+	funcall #'${1}
+snippet mai     生成实例
+	make-instance ${1}
+snippet slv     访问槽
+	slot-value ${1}
+snippet .       #'
+	#'${1}
 # 输入输出
-snippet p       输出
+snippet pi      输出
 	print ${1}
 snippet fm      格式化输出
 	format ${1}
@@ -49,7 +85,7 @@ snippet wiof    with-open-file
 	with-open-file (${1})
 snippet wisis   with-standard-io-syntax
 	with-standard-io-syntax${1}
-snippet rein    筛选
+snippet rei     如果满足 .. 就剔除
+	remove-if${1}
+snippet rein    如果不满足 .. 就剔除
 	remove-if-not${1}
-snippet rip     ripped-p
-	ripped-p ${1}

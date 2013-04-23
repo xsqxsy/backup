@@ -447,3 +447,21 @@ snippet c_wh    分离while
 snippet c_ewh   endwhile
 	<?php endwhile; ?>${1}
 ################
+# PHPUnit自动化测试框架
+snippet u_te    指定当前方法为测试方法
+	@test${1}
+snippet u_de    指定依赖方法
+	@depends ${1}
+snippet u_dp    指定数据提供者
+	@dataProvider ${1}
+snippet u_ee    指定期望的异常名
+	@expectedException ${1}
+snippet u_eem   指定期望的异常消息
+	@expectedExceptionMessage ${1}
+snippet u_eec   指定期望的异常编号
+	@expectedExceptionCode ${1}
+# PHPUnit内建方法
+snippet u_see   设置期望的异常信息
+	setExpectedException(${1});
+snippet u_gee   获取期望的异常名
+	getExpectedException(${1});

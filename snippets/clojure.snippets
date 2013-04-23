@@ -6,15 +6,19 @@ snippet -       分隔注释
 	; -------------------------------${1}
 # 包、命令空间、类
 snippet im      导入包
-	import${1}
+	(import${1})
+snippet rq      导入包文件
+	(require '${1})
+snippet u       use
+	(use '${1})
 # 结构定义
 snippet d       变量赋值
-	def ${1}
+	(def ${1})
 snippet dn      函数定义
-	defn ${1:f_name} [${2:f_arg}]
-	  (${3:f_body})
+	(defn ${1} [${2}]
+	  (${3}))
 snippet dp      定义项目
-	defproject ${1}
+	(defproject ${1})
 # 流程控制
 # 单个关键字
 snippet l       let
@@ -25,6 +29,8 @@ snippet li      链表
 	list ${1}
 snippet ve      vector
 	vector ${1}
+snippet sw      swap!
+	swap! ${1}
 # 输入输出
 snippet p       输出 [不换行]
 	print ${1}

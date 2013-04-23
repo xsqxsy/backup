@@ -104,3 +104,43 @@ snippet _       __xxx__
 	__${1:init}__
 snippet .       self
 	self${1}
+################
+# Django框架
+snippet clm
+	class Meta:
+	    ordering = ['${1}']${2}
+snippet du
+	def __unicode__(self):
+	    return self.${1}
+snippet d_in 整数
+	IntegerField()${2}
+snippet d_ch 字符
+	CharField(${1})${2}
+snippet d_tx 文本
+	TextField()${1}
+snippet d_d 时间1
+	DateField()${1}
+snippet d_dt 时间2
+	DateTimeField(${1})${2}
+snippet d_im 图像
+	ImageField(${1})${2}
+snippet d_ur 链接
+	URLField()${1}
+snippet d_em 邮箱
+	EmailField()${1}
+snippet d_fk 外键
+	ForeignKey(${1})${2}
+snippet d_mtm 多对多
+	ManyToManyField(${1})${2}
+snippet d_ml 最大值
+	max_length=${1}
+snippet d_ut 上传位置
+	upload_to=${1}
+snippet d_bl 留空
+	blank=${1}
+snippet d_rtr 模板渲染
+	render_to_response('${1}')${2}
+snippet d_goo 404错误
+	get_object_or_404(${1})${2}
+snippet d_hrr
+	HttpResponseRedirect(${1})${2}
