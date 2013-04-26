@@ -1,11 +1,9 @@
-%title Common Lisp笔记
+%title Common Lisp
 
 [[../../index|首页]]
-==Common Lisp笔记==
+==Common Lisp==
 ----
-<center>
-<h2>
-[[base/index|语言基础]]
-</h2>
-</center>
+<h3>
+* [[syntax|Common Lisp基础]]
+</h3>
 ----

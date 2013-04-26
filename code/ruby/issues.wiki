@@ -1,0 +1,29 @@
+%title 问题集锦
+
+[[../../index|首页]] - [[index|Ruby]]
+==问题集锦==
+----
+===安装Gem包时阻止自动安装文档===
+
+`Q`：我一般是通过浏览器在线阅读文档的，可不可以在安装`Gem`包时不安装对应的文档
+
+`A`：可以，在安装`Gem`包时手动指定选项 `--no-ri --no-rodc`即可
+
+如果不想每次都这么麻烦，可以在你自己的`home`目录（如 `home/ruchee`）下编辑或新建`.gemrc`文件，在里面添加下面两行，以后安装`Gem`包时就默认不会再安装对应的文档啦
+{{{
+install: --no-ri --no-rdoc
+update: --no-ri --no-rdoc
+}}}
+----
+===Rake错误===
+
+`Q`：使用`Rails 3.0.5`在执行数据迁移时，`Rake`出现下面的错误提示
+{{{
+rake aborted!
+ERROR: 'rake/rdoctask' is obsolete and no longer supported. Use 'rdoc/task' (available in RDoc 2.4.2+) instead.
+}}}
+
+`A`：解决办法是修改项目的`Gemfile`文件，添加一行`gem 'rake', '0.8.7'`，然后执行`bundle install`
+----
+<red>date</red> : 2013-04-26
+----

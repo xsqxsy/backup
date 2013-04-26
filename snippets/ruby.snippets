@@ -1,4 +1,4 @@
-snippet #       文件编码
+snippet coding  文件编码 [Ruby 2.0不再需要]
 	# encoding: utf-8
 snippet -       分隔注释
 	# -------------------------------${1}
@@ -19,7 +19,7 @@ snippet in      包含Module（对整个类有效）
 	include ${1}
 snippet ex      包含Module（只对调用该方法的单个对象有效）
 	extend(${1})
-snippet im      JRuby特有
+snippet im      导入包 [JRuby特有]
 	import ${1}
 snippet rq      包含文件（只加载一次）
 	require '${1}'${2}
@@ -57,7 +57,7 @@ snippet r       正则字面量
 	%r{${1}}
 snippet s       Symbol字面量
 	%s{${1}}
-snippet i       Symbol数组 [2.x新增]
+snippet i       Symbol数组 [Ruby2.0新增]
 	%i{${1}}
 snippet doc     多行字符串
 	<<${1:HEREDOC}
@@ -66,9 +66,9 @@ snippet doc     多行字符串
 # 方法
 snippet pro     Proc.new
 	Proc.new${1}
-snippet la      匿名函数
+snippet la      匿名函数（简写形式）
 	->${1} { ${2} }
-snippet lam     lambda
+snippet lam     匿名函数
 	lambda ${1}
 snippet la?     是否是一个Lambda
 	lambda?${1}
@@ -481,7 +481,7 @@ snippet Obs     观察者
 snippet Sin     单键
 	Singleton${1}
 ################
-# Rails相关
+# Rails框架
 snippet r_ret   转向
 	redirect_to${1}
 snippet r_upa   更新字段

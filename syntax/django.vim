@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:	Django template
 " Maintainer:	Dave Hodder <dmh@dmh.org.uk>
-" Last Change:	2010 May 19
+" Last Change:	2012 Apr 09
 
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded

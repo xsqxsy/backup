@@ -1,13 +1,19 @@
-%title Languages and Skills
+%title 开发笔记
 
 [[../index|首页]]
-==Languages and Skills==
+==开发笔记==
 ----
 <center>
 <h2>
+[[c/index|C]]
+[[commonlisp/index|CL]]
+[[python/index|PY]]
 [[web/index|Web]]
-[[algo/index|Algo]]
-[[tools/index|Tools]]
+----
+[[algo/index|算法]]
+[[database/index|数据库]]
+[[engineering/index|软件工程]]
+[[tools/index|辅助工具]]
 </h2>
 </center>
 ----

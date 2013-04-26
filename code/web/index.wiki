@@ -1,20 +1,10 @@
-%title Web开发笔记
+%title Web开发
 
 [[../../index|首页]]
-==Web开发笔记==
+==Web开发==
 ----
-<center>
-<h2>
-[[php/index|PHP]]
-[[ruby/index|Rb]]
-[[html5/index|HTML5]]
-----
-[[database/index|数据库]]
-[[pattern/index|模式]]
-[[test/index|测试]]
-[[refactor/index|重构]]
-[[deploy/index|部署]]
-[[gleaning/index|拾遗]]
-</h2>
-</center>
+<h3>
+* [[phpunit|PHPUnit自动化测试框架]]
+* [[regex|PHP正则语法]]
+</h3>
 ----

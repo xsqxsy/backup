@@ -1,0 +1,12 @@
+%title wxPython基础
+%template discuss
+
+[[../../index|首页]] - [[index|Python]]
+==wxPython基础==
+----
+一个`wxPython`应用必须有一个`application`对象和至少一个`frame`对象
+
+`application`对象必须是`wx.App`的一个实例或在`OnInit`方法中定义的一个子类的实例，`OnInit`方法将在程序启动时由`wx.App`调用
+----
+<red>date</red> : 2013-04-25
+----

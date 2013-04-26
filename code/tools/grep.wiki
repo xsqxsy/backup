@@ -1,0 +1,11 @@
+%title grep使用集锦
+%template discuss
+
+[[../../index|首页]] - [[index|Tools]]
+==grep使用集锦==
+----
+从根目录开始，查找所有扩展名为`.c`的文本文件，找出包含`Ruchee`的行：<br/>
+`find / -type f -name "*.c" | xargs grep "Ruchee"`
+----
+<red>date</red> : 2013-04-17
+----

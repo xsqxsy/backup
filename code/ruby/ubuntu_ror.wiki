@@ -1,0 +1,75 @@
+%title Ubuntu下Ruby on Rails开发环境的安装
+
+[[../../index|首页]] - [[index|Ruby]]
+==Ubuntu下Ruby on Rails开发环境的安装==
+----
+===第一步 安装依赖库===
+
+# `sudo apt-get install git curl`
+----
+===第二步 安装RVM===
+
+# `bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)`
+# 打开.bashrc文件，在最后添加 `[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"`
+# `source ~/.bashrc`
+# `type rvm | head -1`：如显示rvm is a function则说明RVM安装成功
+# `sudo apt-get install build-essential openssl libreadline6 libreadline6-dev zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion`（这一大串的安装数据可以通过执行`rvm requirements`得到）
+----
+===第三步 安装Ruby===
+
+# `rvm install 2.0.0`：安装指定版本的Rails
+# `rvm use 2.0.0`：选定刚刚安装的Ruby版本
+----
+===第四步 更换镜像===
+
+淘宝`RubyGems`镜像地址为`http://ruby.taobao.org/`，使用方式如下
+
+# `gem sources -a http://ruby.taobao.org/`：增加新镜像
+# `gem sources -r http://rubygems.org/`：移除原有镜像
+# `gem sources -l`；查看镜像列表（必须确保只有淘宝一个镜像地址）
+
+对于`Rails`应用，也可以将`Gemfile`的第一行改写为`source 'http://ruby.taobao.org/'`，然后执行`bundle install`进行更新
+----
+===第五步 安装Rails===
+
+# `gem install rails --version 4.0`：使用--version指定要安装的版本
+----
+===第六步 安装JS运行环境===
+
+# `sudo apt-get install nodejs`
+----
+===第七步 安装数据库驱动===
+
+安装`SQLite3`数据库及其驱动
+# `sudo apt-get install sqlite3 libsqlite3-dev build-essential`
+# `rails new demo --skip-bundle`
+# `cd demo`
+# `bundle install`
+
+安装`MySQL`数据库及其驱动
+# `sudo apt-get install mysql-server libmysqlclient-dev libmysql-ruby`
+# `rm -rf demo`：先删掉先前的目录
+# `rails new demo -d=mysql --skip-bundle`：新建使用`MySQL`数据库的项目
+# `cd demo`
+# `bundle install`
+
+对于`Rails 3.0.5`使用`MySQL`时需要执行下述步骤
+# `cd demo`
+# 编辑`Gemfile`，将`gem 'mysql2'`改为`gem 'mysql2', '< 0.3'`
+# `bundle install`
+----
+===第八步 新建项目进行测试===
+
+# `rvm use 2.0.0 --default`：这样以后就不需要频繁地手动选择版本了
+# `rails new demo --skip-bundle`：之前已经更新过了，除非是修改了`Gemfile`，否则不需要再执行远程更新
+# `cd demo`
+# `bundle install --local`：使用本地仓库进行更新
+# `rails s`：启动服务器
+# 使用浏览器打开`http://127.0.0.1:3000`即可浏览项目默认首页
+----
+===后记===
+
+`RVM`很好地解决了`Ruby`和`Rails`的多版本共存问题，如果系统已经存在使用其他途径安装的`Ruby`，建议先将其卸载，然后使用`RVM`进行安装
+----
+<red>date</red> : 2012-03-08、2012-03-19、2012-03-21、2012-05-01、2012-10-05、2013-04-26
+----

@@ -1,13 +1,11 @@
-%title 工具箱
+%title 辅助工具
 
 [[../../index|首页]]
-==工具箱==
+==辅助工具==
 ----
-<center>
-<h2>
-[[vim/index|Vim]]
-[[git/index|Git]]
-[[bash/index|Bash]]
-</h2>
-</center>
+<h3>
+* [[git|Git使用总结]]
+* [[vimwiki_primer|Vimwiki使用入门]]
+* [[grep|grep使用集锦]]
+</h3>
 ----

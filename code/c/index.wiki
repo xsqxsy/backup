@@ -1,14 +1,4 @@
-%title C语言笔记
+%title C语言
 
 [[../../index|首页]]
-==C语言笔记==
-----
-<center>
-<h2>
-[[base/index|语言基础]]
-----
-[[linux/index|Linux编程]]
-[[csbase/index|专业基础]]
-</h2>
-</center>
-----
+==C语言==

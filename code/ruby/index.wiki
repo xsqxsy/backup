@@ -1,18 +1,13 @@
-%title Ruby笔记
+%title Ruby
 
 [[../../index|首页]]
-==Ruby笔记==
+==Ruby==
 ----
-<center>
-<h2>
-[[base/index|语言基础]]
-----
-[[rails/index|Rails]]
-[[sinatra/index|Sinatra]]
-[[tips/index|Tips]]
-----
-[[coffeescript/index|Coffee]]
-[[jquery/index|jQuery]]
-</h2>
-</center>
+<h3>
+* [[base|Ruby基础]]
+* [[cmd|RoR常用命令]]
+* [[ubuntu_ror|Ubuntu下Ruby on Rails开发环境的安装]]
+* [[blog|一个博客的实现]]
+* [[issues|问题集锦]]
+</h3>
 ----

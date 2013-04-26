@@ -1,0 +1,403 @@
+%title 一个博客的实现
+
+[[../../index|首页]] - [[index|Ruby]]
+==一个博客的实现==
+----
+===启动项目===
+
+# `rails new blog`：创建项目
+# `cd blog`：将工作目录转移到该项目根目录
+# `rake db:create`：创建数据库
+# `rails s`：启动服务器，访问`http://127.0.0.1:3000`即可浏览项目首页
+# `rails g controller home index`：创建`home`控制器
+# `vim app/views/home/index.html.erb`：编辑`home/index`模板文件，将里面的内容修改为`<h1>Hello, Rails!</h1>`
+# `rm public/index.html`：删除默认首页
+# `vim config/routes.rb`：编辑路由，在里面添加`root :to => 'home#index'`，重新访问项目首页将显示`home/index`模板的内容
+----
+===创建主体框架===
+
+# `rails g scaffold Post name:string title:string content:text`：使用脚手架自动生成文章框架
+# `rake db:migrate`：执行数据迁移，也就是将数据模型真正写入数据库
+# `vim app/views/home/index.html.erb`：编辑首页模板文件，添加到文章页面的链接
+{{{class="brush: html"
+<h1>Hello, Rails!</h1>
+<%= link_to '我的博客', posts_path %>
+}}}
+# `vim app/models/post.rb`：编辑文章模型文件，添加验证
+{{{class="brush: ruby"
+class Post < ActiveRecord::Base
+
+  attr_accessible :content, :name, :title
+
+  validates :name,  :presence => true   # 必填
+  validates :title, :presence => true,  # 必填
+                    :length => {:minimum => 5}  # 最小长度
+
+end
+}}}
+# `vim app/views/layouts/application.html.erb`：编辑布局文件，修改整个程序的背景为灰色
+{{{class="brush: html"
+<body style="background: #EEEEEE;">
+}}}
+----
+===增加评论模型===
+
+# `rails g model Comment commenter:string body:text post:references`：创建评论数据模型（`Comment`），将其关联到文章模型（`Post`）
+# `rake db:migrate`：执行数据迁移
+# `vim app/models/post.rb`：编辑文章模型文件，添加与评论模型的关联
+{{{class="brush: ruby"
+class Post < ActiveRecord::Base
+
+  attr_accessible :content, :name, :title
+
+  validates :name,  :presence => true   # 必填
+  validates :title, :presence => true,  # 必填
+                    :length => {:minimum => 5}  # 最小长度
+
+  has_many :comments  # 添加关联，一篇文章可以对应多条评论
+
+end
+}}}
+# `vim config/routes.rb`：编辑路由，在`posts`资源里面添加`comments`资源
+{{{class="brush: ruby"
+Blog::Application.routes.draw do
+
+  resources :posts do
+    resources :comments
+  end  # do
+
+  get "home/index"
+  root :to => 'home#index'  # 设置首页
+
+end
+}}}
+----
+===实现评论功能===
+
+# `rails g controller Comments`：创建评论控制器
+# `vim app/views/posts/show.html.erb`：编辑文章显示模板，添加评论入口和评论展示
+{{{class="brush: html"
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @post.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @post.content %>
+</p>
+
+<h2>评论列表：</h2>
+<% @post.comments.each do |comment| %>
+  <p>
+    <b>昵称：</b>
+    <%= comment.commenter %>
+  </p>
+  <p>
+    <b>评论内容：</b>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<h2>添加评论：</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.label '昵称' %><br>
+    <%= f.text_field :commenter %>
+  </div>
+  <div class="field">
+    <%= f.label '评论内容' %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit '提交评论' %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+}}}
+# `vim app/controllers/comments_controller.rb`：编辑评论控制器，书写评论表单的处理代码
+{{{class="brush: ruby"
+class CommentsController < ApplicationController
+
+  def create
+    @post = Post.find(params[:post_id])  # 获取文章句柄
+    @comment = @post.comments.create(params[:comment])  # 保存表单数据
+
+    redirect_to post_path(@post)  # 处理成功，转向当前文章展示页
+  end  # function
+
+end
+}}}
+----
+===重构===
+
+# `vim app/views/comments/_comment.html.erb`：在`comments`目录下创建一个模板文件，命名为`_comment.html.erb`
+{{{class="brush: html"
+<p>
+  <b>昵称：</b>
+  <%= comment.commenter %>
+</p>
+
+<p>
+  <b>评论内容：</b>
+  <%= comment.body %>
+</p>
+}}}
+# `vim app/views/comments/_form.html.erb`：在`comments`目录下创建模板文件`_form.html.erb`
+{{{class="brush: html"
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.label '昵称' %><br>
+    <%= f.text_field :commenter %>
+  </div>
+  <div class="field">
+    <%= f.label '评论内容' %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit '提交评论' %>
+  </div>
+<% end %>
+}}}
+# `vim app/views/posts/show.html.erb`：修改文章展示页，将之前展示评论和添加评论的代码替换为下面的内容
+{{{class="brush: html"
+<h2>评论列表：</h2>
+<%= render @post.comments %>
+
+<h2>添加评论：</h2>
+<%= render 'comments/form' %>
+}}}
+----
+===评论的删除===
+
+# `vim app/views/comments/_comment.html.erb`：编辑评论展示页，为每条评论加上删除按钮
+{{{class="brush: html"
+<p>
+<%= link_to '删除评论', [comment.post, comment], :confirm => '你确定要删除吗？', :method  => :delete %>
+</p>
+}}}
+# `vim app/controllers/comments_controller.rb`：编辑评论控制器，添加删除操作对应的代码
+{{{class="brush: ruby"
+def destroy
+  @post = Post.find(params[:post_id])
+  @comment = @post.comments.find(params[:id])  # 获取当前评论的句柄
+  @comment.destroy  # 执行删除操作
+
+  redirect_to post_path(@post)
+end  # function
+}}}
+# `vim app/models/post.rb`：编辑文章模型，确保删除文章条目时，将该文章下面的所有评论连带删除
+{{{class="brush: ruby"
+class Post < ActiveRecord::Base
+
+  attr_accessible :content, :name, :title
+
+  validates :name,  :presence => true   # 必填
+  validates :title, :presence => true,  # 必填
+                    :length => {:minimum => 5}  # 最小长度
+
+  has_many :comments, :dependent => :destroy  # 添加关联，一篇文章可以对应多条评论，删除文章也连带删除其相关的评论
+
+end
+}}}
+----
+===添加验证===
+
+# `vim app/controllers/posts_controller.rb`：编辑文章控制器，增加权限验证
+{{{class="brush: ruby"
+class PostsController < ApplicationController
+
+  # 创建简易的验证系统，排除对index和show的验证
+  http_basic_authenticate_with :name => 'ruchee', :password => '123456', :except => [:index, :show]
+  
+  # 其他代码
+end
+}}}
+# `vim app/controllers/comments_controller.rb`：编辑评论控制器，当执行删除操作时进行验证
+{{{class="brush: ruby"
+class CommentsController < ApplicationController
+
+  # 创建简易的验证系统，只对destroy生效
+  http_basic_authenticate_with :name => 'ruchee', :password => '123456', :only => :destroy
+  
+  # 其他代码
+end
+}}}
+----
+===增加标签===
+
+# `rails g model Tag name:string post:references`：新建一个标签模型
+# `rake db:migrate`：执行数据迁移
+# `vim app/models/post.rb`：编辑文章模型，添加对标签数据的关联处理
+{{{class="brush: ruby"
+class Post < ActiveRecord::Base
+
+  attr_accessible :content, :name, :title, :tags_attributes
+
+  validates :name,  :presence => true   # 必填
+  validates :title, :presence => true,  # 必填
+                    :length => {:minimum => 5}  # 最小长度
+
+  has_many :comments, :dependent => :destroy  # 添加关联，一篇文章可以对应多条评论，删除文章也连带删除其相关的评论
+  has_many :tags  # 一篇文章可以对应多个标签
+
+  accepts_nested_attributes_for :tags, :allow_destroy => :true,
+    :reject_if => proc {|attrs| attrs.all? {|k, v| v.blank?}}
+
+end
+}}}
+# `vim app/views/posts/_form.html.erb`：编辑文章表单页，添加对标签的处理，注意，里面的迭代变量已由`f`改成了可读性更强的`post_form`
+{{{class="brush: html"
+<% @post.tags.build %>
+
+<%= form_for(@post) do |post_form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= post_form.label :name %><br />
+    <%= post_form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= post_form.label :title %><br />
+    <%= post_form.text_field :title %>
+  </div>
+  <div class="field">
+    <%= post_form.label :content %><br />
+    <%= post_form.text_area :content %>
+  </div>
+
+  <h2>Tags</h2>
+  <%= render :partial => 'tags/form',
+             :locals => {:form => post_form} %>
+
+  <div class="actions">
+    <%= post_form.submit %>
+  </div>
+<% end %>
+}}}
+# `mkdir app/views/tags && vim app/views/tags/_form.html.erb`：新建`tags`视图文件夹，并创建模板文件`_form.html.erb`
+{{{class="brush: html"
+<%= form.fields_for :tags do |tag_form| %>
+  <div class="field">
+    <%= tag_form.label :name, '标签：' %>
+    <%= tag_form.text_field :name %>
+  </div>
+  <% unless tag_form.object.nil? || tag_form.object.new_record? %>
+    <div class="field">
+      <%= tag_form.label :_destroy, '移除：' %>
+      <%= tag_form.check_box :_destroy %>
+    </div>
+  <% end %>
+<% end %>
+}}}
+# `vim app/views/posts/show.html.erb`：编辑文章显示页，添加标签的展示
+{{{class="brush: html"
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @post.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @post.content %>
+</p>
+
+<p>
+  <b>标签：</b>
+  <%= @post.tags.map {|t| t.name}.join(', ') %>
+</p>
+
+<h2>评论列表：</h2>
+<%= render @post.comments %>
+
+<h2>添加评论：</h2>
+<%= render 'comments/form' %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+}}}
+----
+===使用辅助方法===
+
+# `vim app/helpers/posts_helper.rb`：编辑`posts_helper.rb`文件，添加一个自定义的辅助方法
+{{{class="brush: ruby"
+module PostsHelper
+
+  def join_tags (post)
+    post.tags.map {|t| t.name}.join(', ')
+  end  # function
+
+end
+}}}
+# `vim app/views/posts/show.html.erb`：编辑文章展示页，将之前的标签展示代码用辅助方法重写
+{{{class="brush: html"
+<p>
+  <b>标签：</b>
+  <%= join_tags(@post) %>
+</p>
+}}}
+----
+===部署到AppFog===
+
+注册帐号与新建项目的步骤省略之，很简单，只需点击`New App`按钮，然后选择你需要的服务，最后填好项目名称就可以创建了
+
+这儿我将把博客程序部署到名为`ruchee-rails-blog`的项目里，访问地址为[http://ruchee-rails-blog.hp.af.cm/ http://ruchee-rails-blog.hp.af.cm/]
+
+# `vim Gemfile`：修改`Gemfile`文件，在`production`组加上`mysql2`
+{{{class="brush: ruby"
+source 'https://rubygems.org'
+
+gem 'rails', '3.2.12'
+
+group :development do
+  gem 'sqlite3'
+end  # do
+
+group :production do
+  gem 'mysql2'
+end  # do
+
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+end
+
+gem 'jquery-rails'
+}}}
+# `bundle install --without production`：更新`Gem`包，但`production`组除外
+# `gem install af`：安装`AppFog`的部署工具
+# `af login`：登录`AppFog`，它会要求输入注册邮箱和密码
+# `af update ruchee-rails-blog --runtime ruby193`：上传代码到之前已经建好的项目，且指定在`Ruby 1.9.3`环境下运行
+# 大工告成，以后你需要更新新的代码到服务器时，再次执行`update`操作即可
+----
+本文档对应的`Github`地址为：[[https://github.com/ruchee/blog|https://github.com/ruchee/blog]]
+----
+<red>date</red> : 2013-02-16、2013-02-17
+----

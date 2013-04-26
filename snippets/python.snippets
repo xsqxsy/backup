@@ -38,7 +38,7 @@ snippet cl.     类定义（带括号）
 snippet d       函数定义（不带self）
 	def ${1:f_name} (${2}):
 	  ${3}
-snippet d.      方法定义（带self）
+snippet ds      方法定义（带self）
 	def ${1:f_name} (self${2}):
 	  ${3}
 snippet di      初始化方法
@@ -100,10 +100,10 @@ snippet p.      输出（带括号）
 	print(${1})
 snippet ri      获取输入
 	raw_input(${1})
-snippet _       __xxx__
-	__${1:init}__
-snippet .       self
+snippet s       self
 	self${1}
+snippet .       __xxx__
+	__${1:init}__${2}
 ################
 # Django框架
 snippet clm
@@ -144,3 +144,5 @@ snippet d_goo 404错误
 	get_object_or_404(${1})${2}
 snippet d_hrr
 	HttpResponseRedirect(${1})${2}
+################
+# wxPython框架

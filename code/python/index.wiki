@@ -1,11 +1,10 @@
-%title Python笔记
+%title Python
 
 [[../../index|首页]]
-==Python笔记==
+==Python==
 ----
-<center>
-<h2>
-[[base/index|语言基础]]
-</h2>
-</center>
+<h3>
+* [[django|Django基础]]
+* [[wxpython|wxPython基础]]
+</h3>
 ----

@@ -1,0 +1,32 @@
+%title Git使用总结
+%template discuss
+
+[[../../index|首页]] - [[index|Tools]]
+==Git使用总结==
+----
+===基本命令===
+
+* `git init`：新建`Git`仓库
+* `git clone 仓库路径`：克隆一个本地版本
+* `git add .`：将当前目录下所有文件添加到缓冲区
+* `git commit -m "注释信息"`：将改动提交到`HEAD`
+* `git remote add origin 服务器地址`：将仓库连接到某个远程服务器
+* `git push origin 分支名`：将改动提交到远端仓库
+* `git checkout -- 文件名`：签出之前的文件替换本地的改动
+* `git checkout -b 分支名`：创建一个分支
+* `git branch -d 分支名`：删除一个分支
+* `git checkout master`：切换回主分支（主分支名为`master`）
+* `git merge 分支名`：合并其他分支到当前分支
+* `git diff 分支1 分支2`：比较两分支的内容
+* `git pull`：更新本地仓库到最新版本
+* `git log`：查看日志
+* `git tag 标签信息`：添加标签
+* `git fetch origin`：丢弃所有的本地改动与提交，重新获取远程服务器上的最新版本
+----
+===辅助功能===
+
+* `gitk`：内建的图形界面
+* `git config --global color.ui true`：打开彩色输出
+----
+<red>date</red> : 2013-04-12
+----

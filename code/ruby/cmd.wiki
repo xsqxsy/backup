@@ -1,0 +1,106 @@
+%title RoR常用命令
+
+[[../../index|首页]] - [[index|Ruby]]
+==RoR常用命令==
+----
+===Ruby虚拟机===
+
+从`Ruby 1.9`开始，`Ruby`解释器采用的是和`JVM`一样的架构，同样是编译成字节码再执行，所以`Ruby`解释器也可称为`Ruby`虚拟机
+
+常用选项
+# `-w`：对废弃代码或问题代码给出警告，同时设置`$VERBOSE`为`true`
+# `-e`：直接运行`Ruby`代码，这借鉴自`Perl`，可以同时使用多个`-e`选项。如 `ruby -e "print 'Hello, '" -e "puts 'Ruchee'"`
+# `-c`：解析程序并报告语法错误，但并不运行这个程序
+# `-I`：指定库的搜索路径，这和`GCC`类似，可以同时使用多个`-I`选项，每个选项也可以同时指定多个路径。`Linux/Unix`多个目录的分隔符为`“:”`，`Windows`多个目录的分隔符为`“;”`
+# `-r`：加载指定的`library`，相当于`GCC`的`-l`选项
+# `-K`：以简写形式指定编码，`a`、`A`、`n`、`N`表示`ASCII`，`u`、`U`表示`Unicode`
+# `-E`：以全名形式指定编码，如 `-E utf-8`
+
+使用以下代码可以检测`Ruby`虚拟机启动时加载的模块、类、异常类：
+{{{class="brush: ruby"
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+print "模块：", "\n\n"
+puts Module.constants.sort.select {|x|
+  eval(x.to_s).instance_of? Module
+}
+puts
+
+print "类：", "\n\n"
+puts Module.constants.sort.select {|x|
+  c = eval(x.to_s)
+  c.is_a? Class and not c.ancestors.include? Exception
+}
+puts
+
+print "异常类：", "\n\n"
+puts Module.constants.sort.select {|x|
+  c = eval(x.to_s)
+  c.instance_of? Class and c.ancestors.include? Exception
+}
+}}}
+
+使用以下代码获取`Ruby`虚拟机预定义的全局变量列表：
+{{{class="brush: ruby"
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+puts global_variables.sort
+}}}
+----
+===RVM===
+
+# `rvm list known`：列出可以使用`rvm`安装的软件包
+# `rvm install 1.9.3`：安装指定版本的`Ruby`
+# `rvm use 1.9.3`：使用指定版本的`Ruby`
+# `rvm use 1.9.3 --default`：选定作为默认版本
+# `rvm list`：列出已安装的`Ruby`版本
+# `rvm remove 1.9.3`：卸载指定版本的`Ruby`
+----
+===Gem===
+
+# `gem list`：列出所有已安裝的模块
+# `gem list rails`：列出所有已安装的`Rails`
+# `gem update --system`：升級`RubyGems`到最新版本
+# `gem update`：更新所有已安裝的`Gems`
+# `gem update gem_name`：更新指定模块到最新版本
+# `gem install gem_name`：安裝指定模块
+# `gem install gem_name --no-ri --no-rdoc`：安装模块时不安装对应的文档
+# `gem install rails --version 3.2.2`：安装指定版本的`Rails`
+# `gem uninstall gem_name`：反安裝模块
+----
+===Rails===
+
+# `rails _3.2.2_ new demo`：使用指定版本的`Rails`创建项目
+# `rails new demo --skip-bundle`：创建项目时暂时不执行更新操作
+# `rails new demo -d=mysql`：创建`MySQL`版项目（不指定则默认使用`SQLite3`）
+# `rails server webrick`：使用指定服务器运行`Rails`项目
+# `rails console`：打开项目主控制台
+
+# `rails g scaffold product title:string description:text`：生成脚手架
+# `rails g controller say hello goodbye`：创建控制器
+# `rails g model product title:string description:text`：创建模型
+# `rails g migration mgt_name`：创建`Migration`档案
+----
+===Rake===
+
+# `rake -T`：列出所有`rake`支持的命令
+# `rake db:migrate`：执行数据迁移
+# `rake db:rollback`：数据回滚
+# `rake test`：执行测试
+# `rake db:seed`：使用测试数据进行填充
+# `rake doc:rails`：创建自己的`Rails API`文档
+----
+===更换镜像===
+
+淘宝`RubyGems`镜像地址：`http://ruby.taobao.org/`，使用方式如下
+
+# `gem sources -a http://ruby.taobao.org/`：增加新镜像
+# `gem sources -r http://rubygems.org/`：移除原有镜像
+# `gem sources -l`；查看镜像列表（必须确保只有淘宝一个镜像地址）
+
+对于`Rails`应用，也可以将`Gemfile`的第一行改写为`source 'http://ruby.taobao.org/'`，然后执行`bundle install`进行更新
+----
+<red>date</red> : 2012-03-06、2012-03-09、2012-03-19、2012-03-20
+----

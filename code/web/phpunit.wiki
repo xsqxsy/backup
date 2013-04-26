@@ -1,0 +1,53 @@
+%title PHPUnit自动化测试框架
+%template discuss
+
+[[../../index|首页]] - [[index|Web]]
+==PHPUnit自动化测试框架==
+----
+===基本使用方法===
+
+# 编写测试脚本，整个类要继承`PHPUnit_Framework_TestCase`，每个测试方法名都要以`test`开头，大体结构如下：
+{{{class="brush: php"
+class Class_Name extends PHPUnit_Framework_TestCase {
+
+  /**
+   * 测试方法1
+   */
+  public function testFunc1 () {
+  }
+
+  /**
+   * 测试方法2
+   */
+  public function testFunc2 () {
+  }
+
+  // ...
+
+}
+}}}
+# 命令行执行`phpunit 测试文件.php`开始测试
+----
+===标签指令===
+
+* `@test`：把当前方法当作测试方法，有`@test`修饰的方法其方法名不强制要求以`test`开头
+* `@depends`：指定当前测试所依赖的其他测试方法，所依赖方法的返回值自动成为当前方法的参数，同一个测试方法可指定多个依赖
+* `@dataProvider`：指定提供参数数据的方法名，该数据提供者需要返回一个元素为数组的数组
+* `@expectedException`：指定期望的异常名
+* `@expectedExceptionMessage`：指定期望的异常消息
+* `@expectedExceptionCode`：指定期望的异常编号
+----
+===常用断言===
+
+* `assertEmpty`：空
+* `assertNotEmpty`：非空
+* `assertTrue`：真
+* `assertEquals`：相等
+----
+===内建方法===
+
+* `setExpectedException`：设置期望的异常信息，等价于`@expectedException`、`@expectedExceptionMessage`、`@expectedExceptionCode`三者的组合
+* `getExpectedException`：取得期望的异常名
+----
+<red>date</red> : 2013-04-15
+----

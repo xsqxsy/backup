@@ -1,14 +1,4 @@
-%title 数据库笔记
+%title 数据库
 
 [[../../index|首页]]
-==数据库笔记==
-----
-<center>
-<h2>
-[[mysql/index|MySQL]]
-----
-[[redis/index|Redis]]
-[[mongodb/index|MongoDB]]
-</h2>
-</center>
-----
+==数据库==
