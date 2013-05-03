@@ -1,14 +1,9 @@
-%title JavaScript笔记
+%title JavaScript
 
 [[../../index|首页]]
-==JavaScript笔记==
+==JavaScript==
 ----
-<center>
-<h2>
-[[base/index|语言基础]]
-----
-[[jquery/index|jQuery]]
-[[html5/index|HTML5]]
-</h2>
-</center>
+<h3>
+* [[coffee|CoffeeScript]]
+</h3>
 ----

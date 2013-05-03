@@ -19,17 +19,21 @@ snippet ma      宏
 	{% macro ${1} %}${2}{% endmacro %}
 snippet bl      代码块
 	{% block ${1} %}${2}{% endblock %}
+snippet se      设置作用域区间
+	{% set ${1} %}${2}{% endset %}
 # 流程控制
 snippet if      if
 	{% if ${1} %}${2}{% endif %}
-snippet fo      for ... in
+snippet fo      for .. in
 	{% for ${1} in ${2} %}${3}{% endfor %}
-snippet fi      filter
+snippet fi      应用处理器函数
 	{% filter ${1} %}${2}{% endfilter %}
 # 其他
 snippet auto    autoescape
 	{% autoescape${1} %}${2}{% endautoescape %}
 snippet space   spaceless
 	{% spaceless %}${1}{% endspaceless %}
-snippet set     set
+snippet attr    获取变量值 [用于带连接符的属性名，如 my-name]
+	{% attribute(${1}) %}
+snippet set     设置变量
 	{% set ${1} %}

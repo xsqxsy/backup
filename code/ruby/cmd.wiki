@@ -1,4 +1,5 @@
 %title RoR常用命令
+%template discuss
 
 [[../../index|首页]] - [[index|Ruby]]
 ==RoR常用命令==

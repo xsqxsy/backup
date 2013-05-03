@@ -1,0 +1,84 @@
+%title Twig模板引擎
+%template discuss
+
+[[../../index|首页]] - [[index|PHP]]
+==Twig模板引擎==
+----
+===基本用法===
+
+{{{class="brush: php"
+require_once 'Twig/Autoloader.php';                                    // 加载引导文件
+Twig_Autoloader::register();                                           // 注册引导器
+
+
+$loader = new Twig_Loader_Filesystem('./templates');                   // 指定模板文件存放目录
+$twig   = new Twig_Environment($loader, array('cache' => './cache'));  // 指定缓存文件存放目录
+
+
+echo $twig->render('main.twig', array('name' => 'Ruchee'));            // 模板渲染
+}}}
+----
+===参考架构===
+
+主控文件 `twig_main.php`：
+{{{class="brush: php"
+require_once 'Twig/Autoloader.php';
+require_once './global_func.php';
+
+// 注册启动器
+Twig_Autoloader::register();
+
+// 指定目录
+const TEMPLATES_PATH = './templates';
+const CACHE_PATH     = './cache';
+
+// 初始化引擎
+$Loader = new Twig_Loader_Filesystem(TEMPLATES_PATH);
+$Twig   = new Twig_Environment($Loader, array('cache' => CACHE_PATH));
+}}}
+
+全局函数 `global_func.php`：
+{{{class="brush: php"
+// 获取脚本文件名 [不包括后缀]
+if (! function_exists('get_filename')) {
+  function get_filename () {
+    $fname  = $_SERVER['SCRIPT_NAME'];
+    $fname  = explode('/', $fname);
+    $fname  = explode('.php', $fname[count($fname)-1]);
+    $fname  = $fname[0];
+
+    return $fname;
+  }  // function
+}
+}}}
+
+执行文件 `hello.php`：
+{{{class="brush: php"
+require_once './twig_main.php';
+
+$data   = array('name' => 'Ruchee');
+$render = $Twig->render(get_filename().'.twig', $data);
+echo $render;
+}}}
+----
+===配置选项===
+
+* 开启调试模式：
+{{{class="brush: php"
+$Twig = new Twig_Environment($Loader, array('debug' => true));
+}}}
+----
+===模板语法===
+
+`foo['bar']`、`foo.bar`、`foo.bar()`都统一用`foo.bar`表示，如果`bar`是形如`my-name`的名字，则需写成`attribute(foo, 'my-name')`。当然，对于数组而言，原有的`foo['bar']`形式依然有效
+
+下面是`Twig`对`foo.bar`的解析顺序：
+* 当成数组的元素 `foo['bar']`
+* 当成对象的属性 `foo.bar`
+* 当成对象的方法 `foo.bar()`
+* 调用对象的`get`方法 `foo.getBar()`
+* 调用对象的`is`方法 `foo.isBar()`
+* 以上都没匹配上则返回`null`
+----
+<red>date</red> : 2013-05-02
+----

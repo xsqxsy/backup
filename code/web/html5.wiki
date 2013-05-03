@@ -1,0 +1,48 @@
+%title HTML5学习笔记
+%template discuss
+
+[[../../index|首页]] - [[index|Web]]
+==HTML5学习笔记==
+----
+===革命性变化===
+
+新增了自定义数据属性的功能，约定以`data-`开头，`HTML5`文档验证器会在验证时对其忽略
+
+----
+===废弃的标签===
+
+* `center`、`big`、`font`、`basefont`、`strike`、`s`、`u`、`tt`
+* `frame`、`frameset`、`noframes`
+* `acronym`被`abbr`取代，用于表示缩写；`applet`被`object`取代，用于定义数据对象；`dir`被`ul`取代
+----
+===废弃的属性===
+
+* `align`、`bgcolor`、`width`、`height`、`valign`、`hspace`、`vspace`
+* `body`标签的`link`、`vlink`、`alink`、`text`
+* `iframe`标签的`scrolling`，`HTML5`的`iframe`只支持`src`属性
+* `table`标签的`border`、`cellpadding`、`cellspacing`
+* `a`标签的`target`
+* `head`标签的`profile`
+* `img`标签的`longdesc`
+----
+===区间===
+
+* `meter`：显示一个区间条，可指定最小值、最大值、当前值，如 `<meter min="0" max="100" value="30"></meter>`，效果 <meter min="0" max="100" value="30">30</meter>
+* `progress`：显示一个进度条，可指定最大值、当前值，如 `<progress max="100" value="30"></progress>`，效果 <progress max="100" value="30">30%</progress>
+----
+===表单===
+
+* `fieldset`：在表单中显示一个带标题的边框
+* `legend`：指定边框标题，效果 <fieldset><legend>标题</legend></fieldset>
+* `label`：标签
+* `<input type="text">`：文本输入框，效果 <input type="text" />
+* `<input type="submit">`：提交按钮，效果 <input type="submit" value="提交" />
+* `<input type="range">`：滑块，效果 <input type="range" min="0" max="100" value="30" />
+* `<input type="number">`：选值框，可以使用`step`属性指定步进值，默认为`1`，效果 <input type="number" min="0" max="100" step="3" value="30" />
+* `<input type="date">`：日期选择，效果 <input type="date" value="2013-04-27" />
+* `<input type="email">`：邮箱
+* `<input type="url">`：链接
+* `<input type="color">`：颜色，效果 <input type="color" value="#ff0000" />
+----
+<red>date</red> : 2013-04-27
+----

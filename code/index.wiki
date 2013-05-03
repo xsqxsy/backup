@@ -7,7 +7,9 @@
 <h2>
 [[c/index|C]]
 [[commonlisp/index|CL]]
-[[python/index|PY]]
+[[ruby/index|Rb]]
+[[php/index|PHP]]
+[[javascript/index|JS]]
 [[web/index|Web]]
 ----
 [[algo/index|算法]]

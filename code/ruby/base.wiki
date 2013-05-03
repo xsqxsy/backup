@@ -1,4 +1,5 @@
 %title Ruby基础
+%template discuss
 
 [[../../index|首页]] - [[index|Ruby]]
 ==Ruby基础==

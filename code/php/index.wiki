@@ -1,20 +1,9 @@
-%title PHP笔记
+%title PHP
 
 [[../../index|首页]]
-==PHP笔记==
+==PHP==
 ----
-<center>
-<h2>
-[[base/index|语言基础]]
-----
-[[pattern/index|模式]]
-[[extend/index|扩展]]
-[[spl/index|SPL]]
-----
-[[codeigniter/index|CI]]
-[[thinkphp/index|ThinkPHP]]
-[[smarty/index|Smarty]]
-[[zendframework/index|Zend]]
-</h2>
-</center>
+<h3>
+* [[twig|Twig模板引擎]]
+</h3>
 ----

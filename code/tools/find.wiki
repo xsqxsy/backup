@@ -1,0 +1,11 @@
+%title find使用集锦
+%template discuss
+
+[[../../index|首页]] - [[index|Tools]]
+==find使用集锦==
+----
+从根目录开始，查找所有以`ruchee`开头，且扩展名为`.txt`的文本文件：<br/>
+`find / -type f -name "ruchee*.txt"`
+----
+<red>date</red> : 2013-04-27
+----

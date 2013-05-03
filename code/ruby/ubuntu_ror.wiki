@@ -1,4 +1,5 @@
 %title Ubuntu下Ruby on Rails开发环境的安装
+%template discuss
 
 [[../../index|首页]] - [[index|Ruby]]
 ==Ubuntu下Ruby on Rails开发环境的安装==

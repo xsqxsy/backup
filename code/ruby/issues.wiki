@@ -1,4 +1,5 @@
 %title 问题集锦
+%template discuss
 
 [[../../index|首页]] - [[index|Ruby]]
 ==问题集锦==

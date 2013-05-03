@@ -4,7 +4,6 @@
 ==Web开发==
 ----
 <h3>
-* [[phpunit|PHPUnit自动化测试框架]]
-* [[regex|PHP正则语法]]
+* [[html5|HTML5学习笔记]]
 </h3>
 ----

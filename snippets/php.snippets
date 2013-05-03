@@ -378,92 +378,100 @@ snippet jsd     JSON数据的解码
 	json_decode(${1})
 ################
 # CodeIgniter框架
-snippet c_ll    加载类库
+snippet ci_ll    加载类库
 	$this->load->library('${1}');
-snippet c_lm    加载模型
+snippet ci_lm    加载模型
 	$this->load->model('${1}');
-snippet c_lv    加载视图
+snippet ci_lv    加载视图
 	$this->load->view('${1}'${2});
-snippet c_lh    加载辅助函数
+snippet ci_lh    加载辅助函数
 	$this->load->helper('${1}');
-snippet c_ld    加载数据库
+snippet ci_ld    加载数据库
 	$this->load->database();${1}
-snippet c_ldf   加载数据库维护
+snippet ci_ldf   加载数据库维护
 	$this->load->dbforge();${1}
-snippet c_cl    加载配置文件
+snippet ci_cl    加载配置文件
 	$this->config->load('${1}');
-snippet c_ci    获取配置项
+snippet ci_ci    获取配置项
 	$this->config->item('${1}');
-snippet c_csi   设置配置项
+snippet ci_csi   设置配置项
 	$this->config->set_item('${1}', '${2}');
 # CodeIgniter辅助函数
-snippet c_msg   写入日志
+snippet ci_msg   写入日志
 	log_message('${1}');
-snippet c_err   显示错误信息
+snippet ci_err   显示错误信息
 	show_error('${1}');
-snippet c_404   显示404页面
+snippet ci_404   显示404页面
 	show_404();${1}
-snippet c_coi   获取配置项
+snippet ci_coi   获取配置项
 	config_item('${1}');
-snippet c_sur   基于首页的地址
+snippet ci_sur   基于首页的地址
 	site_url('${1}');
-snippet c_bur   网站基准地址
+snippet ci_bur   网站基准地址
 	base_url();${1}
-snippet c_cur   当前地址
+snippet ci_cur   当前地址
 	current_url();${1}
-snippet c_pur   给链接添加http://前缀
+snippet ci_pur   给链接添加http://前缀
 	prep_url(${1});
-snippet c_anc   锚地址
+snippet ci_anc   锚地址
 	anchor(${1});
-snippet c_mai   Email链接
+snippet ci_mai   Email链接
 	mailto(${1});
-snippet c_uti   从字符串生成URL字串
+snippet ci_uti   从字符串生成URL字串
 	url_title(${1});
-snippet c_red   转向
+snippet ci_red   转向
 	redirect('${1}', '${2:refresh}');
 # CodeIgniter模板
-snippet c_if    分离if
+snippet ci_if    分离if
 	<?php if (${1}): ?>${2}
 	<?php endif; ?>
-snippet c_elif  分离elseif
+snippet ci_elif  分离elseif
 	<?php elseif (${1}): ?>${2}
-snippet c_el    分离else
+snippet ci_el    分离else
 	<?php else:${1} ?>${2}
-snippet c_eif   endif
+snippet ci_eif   endif
 	<?php endif; ?>${1}
-snippet c_fo    分离for
+snippet ci_fo    分离for
 	<?php for (${1}): ?>${2}
 	<?php endfor; ?>
-snippet c_efo   endfor
+snippet ci_efo   endfor
 	<?php endfor; ?>${1}
-snippet c_fe    分离foreach
+snippet ci_fe    分离foreach
 	<?php foreach (${1}): ?>${2}
 	<?php endforeach; ?>
-snippet c_efe   endforeach
+snippet ci_efe   endforeach
 	<?php endforeach; ?>${1}
-snippet c_wh    分离while
+snippet ci_wh    分离while
 	<?php while (${1}): ?>${2}
 	<?php endwhile; ?>
-snippet c_ewh   endwhile
+snippet ci_ewh   endwhile
 	<?php endwhile; ?>${1}
 ################
 # ThinkPHP框架
 ################
 # PHPUnit自动化测试框架
-snippet u_te    指定当前方法为测试方法
+snippet un_te    指定当前方法为测试方法
 	@test${1}
-snippet u_de    指定依赖方法
+snippet un_de    指定依赖方法
 	@depends ${1}
-snippet u_dp    指定数据提供者
+snippet un_dp    指定数据提供者
 	@dataProvider ${1}
-snippet u_ee    指定期望的异常名
+snippet un_ee    指定期望的异常名
 	@expectedException ${1}
-snippet u_eem   指定期望的异常消息
+snippet un_eem   指定期望的异常消息
 	@expectedExceptionMessage ${1}
-snippet u_eec   指定期望的异常编号
+snippet un_eec   指定期望的异常编号
 	@expectedExceptionCode ${1}
 # PHPUnit内建方法
-snippet u_see   设置期望的异常信息
+snippet un_see   设置期望的异常信息
 	setExpectedException(${1});
-snippet u_gee   获取期望的异常名
+snippet un_gee   获取期望的异常名
 	getExpectedException(${1});
+################
+# Twig模板引擎
+snippet tw_reg   注册引导器
+	Twig_Autoloader::register();${1}
+snippet tw_tem   指定模板文件目录
+	Twig_Loader_Filesystem('${1}');
+snippet tw_env   指定配置存储目录
+	Twig_Environment(${1});

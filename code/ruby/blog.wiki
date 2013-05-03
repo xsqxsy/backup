@@ -1,4 +1,5 @@
 %title 一个博客的实现
+%template discuss
 
 [[../../index|首页]] - [[index|Ruby]]
 ==一个博客的实现==

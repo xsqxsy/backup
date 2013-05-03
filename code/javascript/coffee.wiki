@@ -1,0 +1,84 @@
+%title CoffeeScript
+%template discuss
+
+[[../../index|首页]] - [[index|JavaScript]]
+==CoffeeScript==
+----
+===安装和配置===
+
+下面是在`Ubuntu`下安装`CoffeeScript`的方法
+
+# 首先安装`Node.js`和`npm`包管理器：`sudo apt-get install nodejs npm`
+# 然后获取最新的`CoffeeScript`：`sudo npm -g install coffee-script`
+# 再然后编辑家目录下的`.profile`文件，在最后添加一行：`export NODE_PATH=/usr/local/lib/node_modules`
+# 最后执行一条命令以使配置生效：`source ~/.profile`
+----
+===命令选项===
+
+# `-c`：编译成`.js`文件
+# `-p`：直接将编译后的`JavaScript`输出到命令行
+# `-o`：指定编译后文件的保存目录
+# `-w`：监听源文件的变更
+
+# `coffee abc.coffee`：直接运行`.coffee`源文件
+# `coffee -p abc.coffee`：将`JavaScript`输出到命令行
+# `coffee -c abc.coffee`：编译`.coffee`源文件
+# `coffee -co output source`：将`source`目录下所有的`.coffee`源文件编译成`.js`，并将其存放到`output`目录下
+# `coffee -cwo output source`：将`source`目录下的所有源文件不断重新编译成`.js`，并存放到`output`目录
+----
+===运算符===
+
+特别需要注意的是，`CoffeeScript`中的`+`号用作二元运算符时，`+`号右边必须留有空格，否则右边的元素会和`+`号一起被当成函数调用的参数
+
+以下是正确、错误以及替代的写法：
+{{{class="brush: coffee"
+# 标准写法
+str1 = 'abc'
+str2 = str1 + 123  # 'abc123'
+
+# 错误写法
+str1 = 'abc'
+str2 = str1 +123  # str1(+123)
+
+# 替代写法
+str1 = 'abc'
+str2 = "#{str1}123"
+}}}
+
+支持的自然语言操作符有：`and`、`or`、`not`、`is`、`isnt`
+
+`CoffeeScript`对应`JavaScript`的转换规则如下
+
+# `and`：对应`&&`
+# `or`：对应`||`
+# `not`和`!`：对应`!`
+# `is`和`==`：对应`===`
+# `isnt`和`!=`：对应`!==`
+
+其他一些规则如下
+
+# `true`、`yes`、`on`：对应`true`
+# `false`、`no`、`off`：对应`false`
+# `@`、`this`：对应`this`
+# `of`：对应`in`
+----
+===函数===
+
+函数定义使用`->`符号
+
+使用`=`号给函数命名，如 `hi = -> "Hello, World!"`
+
+定义带参数的函数, 如 `hi = (name) -> "Hello, #{name}!"`
+
+调用函数，如 `hi "Ruchee"`
+
+`CoffeeScript`的语法很大程度上来自`Ruby`，譬如函数隐式返回最后一个表达式的值，使用`#{}`进行变量内插，函数调用可以省略括号等
+
+由于`CoffeeScript`中`隐式括号`的存在，在调用函数时，除了最外层函数外，其他函数最好是都使用括号来调用，如 `console.log fun1(arg1) fun2(arg2, arg3)`
+
+可以在函数体中使用`JavaScript`的类数组对象`arguments`来访问传递给函数的所有参数，这通常用于实现函数接受变长参数的功能
+
+如 `hi = -> "Hello, #{arguments[0]}!"`
+----
+<red>date</red> : 2012-09-02
+----
