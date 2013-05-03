@@ -80,5 +80,14 @@ $Twig = new Twig_Environment($Loader, array('debug' => true));
 * 调用对象的`is`方法 `foo.isBar()`
 * 以上都没匹配上则返回`null`
 ----
+===内建函数===
+
+* `attribute`：动态获取变量属性值，可用形式有以下几种
+{{{
+attribute(对象, 方法名)
+attribute(对象, 方法名, 参数)
+attribute(数组, 元素名)
+}}}
+----
 <red>date</red> : 2013-05-02
 ----

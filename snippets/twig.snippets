@@ -28,12 +28,21 @@ snippet fo      for .. in
 	{% for ${1} in ${2} %}${3}{% endfor %}
 snippet fi      应用处理器函数
 	{% filter ${1} %}${2}{% endfilter %}
+# 内建函数
+snippet att     获取变量值 [用于带连接符的属性名，如 my-name]
+	attribute(${1})
+snippet blo     重用代码块
+	block('${1}')
+snippet con     从字符串或对象的常量生成一个常量
+	constant('${1}')
+snippet cyc     循环一个数组
+	cycle(${1})
+snippet dat     根据字符串生成时间 [与PHP的date函数没多大区别]
+	date(${1})
 # 其他
 snippet auto    autoescape
 	{% autoescape${1} %}${2}{% endautoescape %}
 snippet space   spaceless
 	{% spaceless %}${1}{% endspaceless %}
-snippet attr    获取变量值 [用于带连接符的属性名，如 my-name]
-	{% attribute(${1}) %}
 snippet set     设置变量
 	{% set ${1} %}

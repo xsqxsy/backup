@@ -468,10 +468,12 @@ snippet un_see   设置期望的异常信息
 snippet un_gee   获取期望的异常名
 	getExpectedException(${1});
 ################
-# Twig模板引擎
-snippet tw_reg   注册引导器
-	Twig_Autoloader::register();${1}
-snippet tw_tem   指定模板文件目录
-	Twig_Loader_Filesystem('${1}');
-snippet tw_env   指定配置存储目录
-	Twig_Environment(${1});
+# Smarty模板引擎
+snippet sm       $smarty
+	$smarty->${1}
+snippet sm_cl    加载配置
+	configLoad('${1}');
+snippet sm_as    传递变量
+	assign('${1}', ${2});
+snippet sm_di    模板渲染
+	display('${1}.tpl');
