@@ -1,0 +1,71 @@
+%title 公司内部框架分析
+
+[[../../index|首页]] - [[../index|Work]] - [[index|QY]]
+==公司内部框架分析==
+----
+===目录结构===
+
+api<br/>
+  ccmessage<br/>
+  domain<br/>
+│  │  └─api_domain<br/>
+│  │      ├─doc<br/>
+│  │      │  └─EppApi<br/>
+│  │      ├─help<br/>
+│  │      │  ├─apps<br/>
+│  │      │  ├─data<br/>
+│  │      │  ├─doc<br/>
+│  │      │  └─include<br/>
+│  │      └─options<br/>
+│  ├─jk<br/>
+│  ├─message<br/>
+│  ├─sms<br/>
+│  │  └─cachedata<br/>
+│  ├─smsapi<br/>
+│  └─voice<br/>
+├─conf<br/>
+├─control<br/>
+│  ├─agent<br/>
+│  ├─behavior<br/>
+│  ├─business<br/>
+│  ├─ccmessage<br/>
+│  ├─company<br/>
+│  ├─crm<br/>
+│  ├─device<br/>
+│  ├─domain<br/>
+│  ├─email<br/>
+│  ├─files<br/>
+│  ├─icp<br/>
+│  ├─jk<br/>
+│  ├─module<br/>
+│  ├─order<br/>
+│  ├─paycenter<br/>
+│  ├─product<br/>
+│  ├─qydns<br/>
+│  ├─saas<br/>
+│  ├─safe<br/>
+│  ├─server<br/>
+│  ├─service<br/>
+│  ├─sms<br/>
+│  ├─smsapi<br/>
+│  ├─user<br/>
+│  ├─voice<br/>
+│  └─www<br/>
+├─doc<br/>
+├─helper<br/>
+├─lang<br/>
+├─libs<br/>
+├─log<br/>
+│  └─domain<br/>
+└─module<br/>
+    ├─agent<br/>
+    ├─crm<br/>
+    ├─dns<br/>
+    ├─module<br/>
+    ├─pay<br/>
+    ├─statis<br/>
+    ├─usercenter<br/>
+    └─www<br/>
+----
+<red>date</red> : 2013-05-02
+----

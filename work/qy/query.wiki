@@ -1,0 +1,39 @@
+%title 常用查询接口
+
+[[../../index|首页]] - [[../index|Work]] - [[index|QY]]
+==常用查询接口==
+----
+* `cls_entry::load('content')->temp_info($c_id)`：获取页面内容，参数为页面`ID`
+{{{class="brush: php"
+// 文件路径：common/control/www/content.php
+
+public function temp_info ($id) {
+  $rs = $this->load('cls_content','www')->temp_info($id);
+  return $this->result(1,'','',$rs[0]);
+}
+}}}
+* `cls_entry::load('friendlink')->getforindex()`：获取首页的友情链接
+{{{class="brush: php"
+// 文件路径：common/control/www/friendlink.php
+
+public function getforindex(){
+  $cls_frienlink = $this->load('cls_friendlink','www');
+  $flink = $cls_frienlink->get_flink(1);  // 获取首页友链
+  $this->helper('www');
+  $cate1 = arraymulti_diff($flink,'fl_category');  // 获取分类
+  
+  $flink1 = array();
+  foreach ($cate1 as $k1=>$v1){
+    foreach ($flink as $k=>$v){
+      if($v1 == $v['fl_category']){
+        $flink1[$k1]['category'] = $v1;
+        $flink1[$k1]['sub'][] = $v;
+      }
+    }
+  }
+  return $this->result(1,'','',$flink1);
+}
+}}}
+----
+<red>date</red> : 2013-04-15
+----

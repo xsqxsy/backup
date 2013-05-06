@@ -1,0 +1,40 @@
+%title 主站执行流程
+
+[[../../index|首页]] - [[../index|Work]] - [[index|QY]]
+==主站执行流程==
+----
+===index.php===
+
+包含`common.php`和`domain/application.fuction.php`
+
+获取`c_id`参数值，如果没有指定则设为默认值`74`（首页）
+
+获取`c_cate_id`，如果该值不为`1`或`19`就调用`make_temp`生成缓存文件（传入参数`c_id`），否则调用`make_default_temp`生成默认缓存文件
+
+`make_temp`函数：
+{{{class="brush: php"
+function make_temp ($id) {
+  $tcache_dir = WEBPATH_DIR.'templates/cache/';  // 指定缓存文件存储路径
+  if(! file_exists($tcache_dir)) {
+    mkdir($tcache_dir);
+  }
+  
+  $temp_onfo = cls_entry::load('content')->temp_info($id);  // 读数据库，取得页面内容
+  $temp_onfo = $temp_onfo['result'];
+  
+  $content   = str_replace('{$content}',$temp_onfo['c_content'],$temp_onfo['t_code']);  // 执行模板填充
+  
+  return file_put_contents($tcache_dir.$id.'.html',$content);  // 将填充后的内容写入文件
+}
+}}}
+
+向模板传递`qycn_page`（页头信息）和`position`（位置信息）
+
+根据`c_id`的值拼接模板文件的路径`$t_file`，该模板文件就是先前由`make_temp`或`make_default_temp`生成的缓存文件
+
+根据`cc_url`，包含`source`目录下同名的`PHP`文件，实际的模板渲染、模板呈现工作全部由`source`目录下的文件完成
+
+至此，页面呈现完成，执行中止
+----
+<red>date</red> : 2013-04-15
+----

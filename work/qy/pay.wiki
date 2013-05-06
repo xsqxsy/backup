@@ -1,0 +1,40 @@
+%title 支付流程分析
+
+[[../../index|首页]] - [[../index|Work]] - [[index|QY]]
+==支付流程分析==
+----
+===购买流程===
+
+# 购买接入地址，负责生成`s_id`：`www.qycn.test/addservice/servicecombo_buy_step1.php`，附带参数`sc_id`代表产品缩写
+# 创建订单，生成订单号，并显示付款页面：`www.qycn.test/user/order_pay_step2.php`，附带参数`o_id`代表订单号
+# 付款执行：`www.qycn.test/user/order_pay_action.php`，接收付款页全部的表单数据
+# 显示支付结果：`www.qycn.test/user/order_pay_step3.php`，附带参数`o_id`代表订单号
+----
+===订单的创建===
+
+# 生成订单号
+{{{class="brush: php"
+// 加载服务模块
+$service = cls_entry::load('service');
+
+// 创建订单，生成订单号
+$order = $service->order($post);
+}}}
+# 付款执行
+{{{class="brush: php"
+// 获取订单详情
+$order = cls_entry::load('order')->getbyid($o_id);
+
+// 获取产品详情
+$product = cls_entry::load('product')->getbyid($order['o_p_id']);
+
+// 根据付款类型，转入不同的处理途径
+# $pay_type为0：银联网银支付
+# $pay_type为1：余额支付，包含payment/payment_open.php文件进行处理
+# $pay_type为4：支付宝支付
+# $pay_type为5：财付通支付
+# $pay_type为6：银联认证支付
+}}}
+----
+<red>date</red> : 2013-04-12
+----
