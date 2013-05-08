@@ -9,8 +9,6 @@ snippet in      包含系统头文件
 	#include <${1}>${2}
 snippet in.     包含自定义头文件
 	#include "${1}"${2}
-snippet ins     包含C标准头文件
-	#include <stdio.h>${1}
 snippet df      宏定义
 	#define ${1}
 snippet ifdf    包含了指定头文件时的处理方式
@@ -32,25 +30,25 @@ snippet us      引用标准命名空间
 snippet na      命名空间
 	namespace ${1:na_name} {
 
-	  ${2}
+	    ${2}
 
 	}
 snippet cl      类定义
 	class ${1:cl_name} {
 
-	  ${2}
+	    ${2}
 
 	};  // class
 snippet fc      构造函数
 	${1:f_name} (${2}) ${3}{
 
-	  ${4}
+	    ${4}
 
 	}  // construct
 snippet fd      析构函数
 	~${1:f_name} () {
 
-	  ${3}
+	    ${3}
 
 	}  // deconstruct
 # 异常处理
@@ -58,36 +56,36 @@ snippet thr     抛出异常
 	throw ${1};
 snippet try     捕获异常
 	try {
-	  ${1}
+	    ${1}
 	}
 snippet cat     处理异常
 	catch (${1}) {
-	  ${2}
+	    ${2}
 	}
 snippet fin     善后处理
 	finally {
-	  ${1}
+	    ${1}
 	}
 # 函数
 snippet main    主函数
 	int
 	main (int argc, char *argv[]) {
 
-	  ${1}
+	    ${1}
 
-	  return 0;
+	    return 0;
 
 	}  // main
 snippet f       函数定义
 	${1:f_name} (${2}) {
 
-	  ${3}
+	    ${3}
 
 	}  // function
 snippet cf      类方法定义
 	${1:f_name} (${2}) ${3}{
 
-	  ${4}
+	    ${4}
 
 	}  // function
 snippet fd      函数声明
@@ -95,11 +93,11 @@ snippet fd      函数声明
 # 复合类型
 snippet str     结构体定义
 	struct ${1:str_name} {
-	  ${2}
+	    ${2}
 	};  // struct
 snippet uni     共用体
 	union ${1:uni_name} {
-	  ${2}
+	    ${2}
 	};  // union
 snippet enu     枚举定义
 	enum ${1:enu_name} {${2}};
@@ -107,52 +105,52 @@ snippet tp      类型定义
 	typedef ${1}
 snippet tps     定义结构体类型
 	typedef struct ${1} {
-	  ${2}
+	    ${2}
 	} ${3:str_name};
 snippet tpu     定义共用体类型
 	typedef union ${1} {
-	  ${2}
+	    ${2}
 	} ${3:uni_name};
 snippet tpe     定义枚举类型
 	typedef enum ${1} {
-	  ${2}
+	    ${2}
 	} ${3:enu_name};
 # 流程控制
 snippet if      if
 	if (${1}) {
-	  ${2}
+	    ${2}
 	}
 snippet elif    else if
 	else if (${1}) {
-	  ${2}
+	    ${2}
 	}
 snippet el      else
 	else {
-	  ${1}
+	    ${1}
 	}
 snippet fo      for
 	for (${1}) {
-	  ${2}
+	    ${2}
 	}  // for
 snippet wh      while
 	while (${1}) {
-	  ${2}
+	    ${2}
 	}  // while
 snippet do      do-while
 	do {
-	  ${2}
+	    ${2}
 	}
 	while (${1});
 snippet sw      switch
 	switch (${1}) {
-	  ${2}
+	    ${2}
 	}  // switch
 snippet cs      case
 	case ${1}:
-	  ${2}
+	    ${2}
 snippet def     default
 	default:
-	  ${1}
+	    ${1}
 # 输入输出
 snippet p       输出
 	printf("${1}"${2});

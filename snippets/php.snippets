@@ -25,7 +25,7 @@ snippet na      命名空间（行语法）
 	namespace ${1};${2}
 snippet na.     命名空间（大括号语法）
 	namespace${1} {
-	  ${2}
+	    ${2}
 	}
 snippet u       设置别名
 	use ${1};${2}
@@ -46,42 +46,42 @@ snippet df      定义常量
 snippet int     接口定义
 	interface ${1:int_name} {
 
-	  ${2}
+	    ${2}
 
 	}  // interface
 snippet cl      类定义
 	class ${1:cl_name} {
 
-	  ${2}
+	    ${2}
 
 	}  // class
 snippet cle     带继承的类定义
 	class ${1:cl_nameA} extends ${2:cl_nameB} {
 
-	  ${3}
+	    ${3}
 
 	}  // class
 snippet cli     实现接口的类定义
 	class ${1:cl_name} implements ${2:cl_intName} {
 
-	  ${3}
+	    ${3}
 
 	}  // class
 snippet clei    先继承后实现接口的类定义
 	class ${1:cl_nameA} extends ${2:cl_nameB} implements ${3:cl_intName} {
 
-	  ${4}
+	    ${4}
 
 	}  // class
 snippet clee    继承异常类
 	class ${1:cl_name} extends Exception {
 
-	  ${2}
+	    ${2}
 
 	}  // class
 snippet f       函数定义
 	function ${1:f_name} (${2}) {
-	  ${3}
+	    ${3}
 	}  // function
 snippet ff      匿名函数（不换行）
 	function (${1}) {${2}}
@@ -91,98 +91,98 @@ snippet abf     用于声明抽象方法
 	abstract function ${1:f_name} (${2});${3}
 snippet fc      构造方法
 	function __construct (${1}) {
-	  ${2}
+	    ${2}
 	}  // function
 snippet fd      析构方法
 	function __destruct () {
-	  ${1}
+	    ${1}
 	}  // function
 snippet fcl     克隆方法
 	function __clone () {
-	  ${1}
+	    ${1}
 	}  // function
 snippet fto     将类当作字符串打印
 	function __toString (${1}) {
-	  ${2}
+	    ${2}
 	}  // function
 snippet fau     自动加载
 	function __autoload (${1}) {
-	  ${2}
+	    ${2}
 	}  // function
 snippet fge     __get()：访问未定义的属性时被调用
 	function __get (${1:property}) {
-	  ${2}
+	    ${2}
 	}  // function
 snippet fse     __set()：给未定义的属性赋值时被调用
 	function __set (${1:property}, ${2:value}) {
-	  ${3}
+	    ${3}
 	}  // function
 snippet fca     __call()：调用未定义的方法时被调用
 	function __call (${1:$methodname}, ${2:args}) {
-	  ${3}
+	    ${3}
 	}  // function
 snippet fis     __isset()：对未定义的属性调用isset()时被调用
 	function __isset (${1:property}) {
-	  ${2}
+	    ${2}
 	}  // function
 snippet fus     __unset()：对未定义的属性调用unset()时被调用
 	function __unset (${1:property}) {
-	  ${2}
+	    ${2}
 	}  // function
 # 流程控制
 snippet if      if
 	if (${1}) {
-	  ${2}
+	    ${2}
 	}
 snippet elif    else if
 	else if (${1}) {
-	  ${2}
+	    ${2}
 	}
 snippet el      else
 	else {
-	  ${1}
+	    ${1}
 	}
 snippet fo      for循环
 	for (${1}) {
-	  ${2}
+	    ${2}
 	}  // for
 snippet fe      foreach迭代
 	foreach (${1}) {
-	  ${2}
+	    ${2}
 	}  // foreach
 snippet wh      while循环
 	while (${1}) {
-	  ${2}
+	    ${2}
 	}  // while
 snippet do      do .. while
 	do {
-	  ${2}
+	    ${2}
 	}
 	while (${1});
 snippet sw      switch
 	switch (${1}) {
-	  ${2}
+	    ${2}
 	}
 snippet cs      case
 	case ${1}:
-	  ${2}
+	    ${2}
 snippet def     default
 	default:
-	  ${1}
+	    ${1}
 # 异常处理
 snippet thr     抛出异常
 	throw new ${1:Exception}(${2});
 snippet try     监控代码块
 	try {
-	  ${1}
+	    ${1}
 	}
 snippet cat     捕获异常
 	catch (${1:Exception} $${2:e}) {
-	  ${3}
+	    ${3}
 	}
 snippet fin     善后处理 [PHP 5.5新增]
 	finally {
-	  ${1}
+	    ${1}
 	}
 snippet E       Exception
 	Exception${1}
@@ -246,6 +246,8 @@ snippet nuf     数值格式化
 # 调试
 snippet ee      输出信息，并终止执行
 	echo ${1};  exit();
+snippet e-      打印调试分隔符
+	echo '------ ${1} ------<br/>';
 snippet vd      打印详细的变量信息
 	var_dump(${1});
 snippet ve      打印易读的变量信息
@@ -314,8 +316,6 @@ snippet ins     检查对象是否是指定类的实例
 	instanceof ${1}
 snippet s       self::
 	self::${1}
-snippet >       =>
-	=> ${1}
 snippet .      $this->
 	$this->${1}
 # 预定义常量
@@ -477,3 +477,4 @@ snippet sm_as    传递变量
 	assign('${1}', ${2});
 snippet sm_di    模板渲染
 	display('${1}.tpl');
+################
