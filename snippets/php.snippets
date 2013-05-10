@@ -377,6 +377,14 @@ snippet jse     JSON数据的编码
 snippet jsd     JSON数据的解码
 	json_decode(${1})
 ################
+# Smarty模板引擎
+snippet sm_cl    加载配置
+	$smarty->configLoad('${1}');
+snippet sm_as    传递变量
+	$smarty->assign('${1}', ${2});
+snippet sm_di    模板渲染
+	$smarty->display('${1}');
+################
 # CodeIgniter框架
 snippet ci_ll    加载类库
 	$this->load->library('${1}');
@@ -411,70 +419,8 @@ snippet ci_bur   网站基准地址
 	base_url();${1}
 snippet ci_cur   当前地址
 	current_url();${1}
-snippet ci_pur   给链接添加http://前缀
-	prep_url(${1});
-snippet ci_anc   锚地址
-	anchor(${1});
-snippet ci_mai   Email链接
-	mailto(${1});
 snippet ci_uti   从字符串生成URL字串
 	url_title(${1});
 snippet ci_red   转向
 	redirect('${1}', '${2:refresh}');
-# CodeIgniter模板
-snippet ci_if    分离if
-	<?php if (${1}): ?>${2}
-	<?php endif; ?>
-snippet ci_elif  分离elseif
-	<?php elseif (${1}): ?>${2}
-snippet ci_el    分离else
-	<?php else:${1} ?>${2}
-snippet ci_eif   endif
-	<?php endif; ?>${1}
-snippet ci_fo    分离for
-	<?php for (${1}): ?>${2}
-	<?php endfor; ?>
-snippet ci_efo   endfor
-	<?php endfor; ?>${1}
-snippet ci_fe    分离foreach
-	<?php foreach (${1}): ?>${2}
-	<?php endforeach; ?>
-snippet ci_efe   endforeach
-	<?php endforeach; ?>${1}
-snippet ci_wh    分离while
-	<?php while (${1}): ?>${2}
-	<?php endwhile; ?>
-snippet ci_ewh   endwhile
-	<?php endwhile; ?>${1}
-################
-# ThinkPHP框架
-################
-# PHPUnit自动化测试框架
-snippet un_te    指定当前方法为测试方法
-	@test${1}
-snippet un_de    指定依赖方法
-	@depends ${1}
-snippet un_dp    指定数据提供者
-	@dataProvider ${1}
-snippet un_ee    指定期望的异常名
-	@expectedException ${1}
-snippet un_eem   指定期望的异常消息
-	@expectedExceptionMessage ${1}
-snippet un_eec   指定期望的异常编号
-	@expectedExceptionCode ${1}
-# PHPUnit内建方法
-snippet un_see   设置期望的异常信息
-	setExpectedException(${1});
-snippet un_gee   获取期望的异常名
-	getExpectedException(${1});
-################
-# Smarty模板引擎
-snippet sm       $smarty
-	$smarty->${1}
-snippet sm_cl    加载配置
-	configLoad('${1}');
-snippet sm_as    传递变量
-	assign('${1}', ${2});
-snippet sm_di    模板渲染
-	display('${1}.tpl');
 ################

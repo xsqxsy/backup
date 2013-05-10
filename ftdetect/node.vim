@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufReadPost *.node set filetype=javascript
+autocmd BufNewFile,BufReadPost *.nd set filetype=node

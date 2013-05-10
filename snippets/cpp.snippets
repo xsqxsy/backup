@@ -9,6 +9,8 @@ snippet in      包含系统头文件
 	#include <${1}>${2}
 snippet in.     包含自定义头文件
 	#include "${1}"${2}
+snippet ins     包含标准输入输出库
+	#include <iostream>${2}
 snippet df      宏定义
 	#define ${1}
 snippet ifdf    包含了指定头文件时的处理方式
@@ -68,8 +70,7 @@ snippet fin     善后处理
 	}
 # 函数
 snippet main    主函数
-	int
-	main (int argc, char *argv[]) {
+	int main (int argc, char *argv[]) {
 
 	    ${1}
 
@@ -153,13 +154,9 @@ snippet def     default
 	    ${1}
 # 输入输出
 snippet p       输出
-	printf("${1}"${2});
+	cout << ${1}
 snippet s       输入
-	scanf("${1}", ${2});
-snippet spr
-	sprintf(${1:stderr}, "${2:%s}", ${3});
-snippet fpr
-	fprintf(${1:stderr}, "${2:%s}"${3});
+	cin >> ${1}
 # 单个关键字
 snippet pu      公共
 	public${1}
