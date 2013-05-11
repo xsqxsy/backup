@@ -1,8 +1,8 @@
-%title Common Lisp基础
+%title Common Lisp语法
 %template discuss
 
 [[../../index|首页]] - [[index|CommonLisp]]
-==Common Lisp基础==
+==Common Lisp语法==
 ----
 ===特殊符号===
 
@@ -44,6 +44,9 @@
 * `first - tenth`：取得特定索引的元素，从`1`开始索引，而不是`0`
 * `mapcar`：接受一个函数和任意个列表，返回在每个列表的每个元素上应用该函数的结果
 * `maplist`：参数和`mapcar`一样，对列表的每一个渐进的`cdr`应该该函数
+* `member`：在一个列表中寻找指定元素，返回该元素第一次匹配直到列表结束的所有内容，默认使用`eql`来比较，可使用`:test`关键字参数自定义比较函数
+* `adjoin`：一个条件版的`cons`，其接受一个对象和一个列表，只有该对象不存在于该列表，才将对象构建到列表里面
+* `union`（并）、`intersection`（交）、`set-difference`（补）：三函数均接受两个列表，进行集合求并、求交、求补的操作
 ----
 ===判断函数===
 

@@ -4,6 +4,9 @@
 ==PHP==
 ----
 <h3>
-* [[twig|Twig模板引擎]]
+* [[smarty|Smarty模板引擎]]
+* [[functions|函数用法拾遗]]
+* [[qy_framework|某公司内部框架分析]]
+* [[qy_query|某公司内部框架常用查询语句]]
 </h3>
 ----

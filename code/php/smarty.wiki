@@ -1,0 +1,103 @@
+%title Smarty模板引擎
+%template discuss
+
+[[../../index|首页]] - [[index|PHP]]
+==Smarty模板引擎==
+----
+===核心规律===
+
+可以在`Smarty`模板文件里面直接使用`PHP`函数，包括`PHP`的内建函数和自己定义的函数
+
+可以在标签里面自由使用各种数学运算符
+
+支持内嵌标签实现变量内插，不分单双引号，如 `"Now is {time()|date_format:'%Y-%m-%d'}"`
+
+如果需要临时阻止对标签的解析，使用`{literal}{/literal}`标签对即可
+----
+===示例架构===
+
+主调文件 `MySmarty.php`：
+{{{
+define('SMARTY_PATH',    'D:/Ruchee/Web/php/PEAR/Smarty/');
+define('MY_SMARTY_PATH', 'D:/Ruchee/workspace/Apps/PHP/Smarty/');
+
+require_once SMARTY_PATH.'Smarty.class.php';
+
+
+class MySmarty extends Smarty {
+
+  function __construct () {
+    parent::__construct();
+
+    $this->template_dir = MY_SMARTY_PATH.'templates/';
+    $this->compile_dir  = MY_SMARTY_PATH.'templates_c/';
+    $this->config_dir   = MY_SMARTY_PATH.'configs/';
+    $this->cache_dir    = MY_SMARTY_PATH.'cache/';
+  }  // function
+
+}  // class
+}}}
+
+公共文件 `common.php`：
+{{{
+require_once '../MySmarty.php';
+$smarty = new MySmarty();
+}}}
+
+
+执行文件 `example.php`
+{{{
+require_once './common.php';
+
+$smarty->assign('name', 'Ruchee');
+$smarty->display('example.tpl');
+}}}
+
+
+模板文件 `example.tpl`
+{{{
+My name is {$name}
+}}}
+----
+===配置文件===
+
+配置文件语法：
+* 行注释使用`#`号开头
+* 变量值可以用单引号或双引号被引起来，但这并不是必须的，如 `myName = 'Ruchee'`。如果变量值太长，可以使用三引号进行包围
+* 配置变量可使用`[分组名]`进行分组
+* 在变量名或分组名的最前面加上一个`.`号则可实现该配置项的隐藏
+
+加载配置的两种方法，两者都可以有第二个参数用于指定分组名：
+# 在`PHP`文件里面使用`$smarty->configLoad('模板文件')`函数加载
+# 在模板文件里面使用`{config_load "模板文件"}`加载
+
+使用配置变量的两种方法：
+# `{$smarty.config.配置变量名}`
+# `{#配置变量名#}`
+----
+===保留变量===
+
+* `$smarty.get`：访问`_GET`数组
+* `$smarty.post`：访问`_POST`数组
+* `$smarty.request`：访问`_REQUEST`数组
+* `$smarty.cookies`：访问`_COOKIE`数组
+* `$smarty.session`：访问`_SESSION`数组
+* `$smarty.server`：访问`_SERVER`数组
+* `$smarty.env`：访问环境信息
+
+* `$smarty.now`：当前时间戳
+* `$smarty.config`：访问配置变量
+* `$smarty.const`：直接访问`PHP`的常量
+* `$smarty.capture`：访问标记范围变量
+* `$smarty.section`：用于引用`{section}`循环中的属性
+* `$smarty.template`：当前模板名称
+* `$smarty.template_object`：当前模板对象
+* `$smarty.current_dir`：当前模板目录
+* `$smarty.version`：当前使用的`Smarty`版本
+* `$smarty.block.child`：子模块的区块代码
+* `$smarty.block.parent`：父模块的区块代码
+* `$smarty.ldelim`：当前使用的左定界符
+* `$smarty.rdelim`：当前使用的右定界符
+----
+<red>date</red> : 2013-05-03
+----

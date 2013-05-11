@@ -4,6 +4,6 @@
 ==Common Lisp==
 ----
 <h3>
-* [[syntax|Common Lisp基础]]
+* [[syntax|Common Lisp语法]]
 </h3>
 ----

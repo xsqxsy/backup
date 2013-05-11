@@ -1,0 +1,28 @@
+%title 某公司内部框架常用查询语句
+%template discuss
+
+[[../../index|首页]] - [[index|PHP]]
+==某公司内部框架常用查询语句==
+----
+===联表查询===
+
+{{{
+// 主查询条件
+$where = array('field' => 're_id', 'val' => intval($o_id));
+// 联接表查询，"table"一项必须填写完整的表名，"left"一项是主查询表的字段，"right"一项是联接表的字段
+$join  = array('table' => 'qy_order', 'type' => 'INNER', 'left' => 're_id', 'right' => 'o_id');
+
+$data  = cls_entry::load('receipt')->query($where, '', $join);
+}}}
+----
+===IN查询语句===
+
+{{{
+// 只需用逗号分隔即可，不需要外围的括号
+$ids  = implode(',', $re_ids);
+// 使用"type"指定查询方式
+$data = cls_entry::load('receipt')->query(array('field' => 're_id', 'val' => $ids, 'type' => 'IN'));
+}}}
+----
+<red>date</red> : 2013-05-07
+----

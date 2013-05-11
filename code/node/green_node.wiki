@@ -1,0 +1,22 @@
+%title 在Win平台下制作绿色版Node
+%template discuss
+
+[[../../index|首页]] - [[index|Node]]
+==在Win平台下制作绿色版Node==
+----
+`Node`默认会将模块安装到`C`盘个人文档目录，我是觉得很不爽的
+
+下面是制作绿色版`Node`的方法，模块安装目录将自定义到`Node`可执行文件的同一级目录
+
+# 首先上`Node`官网下载最新的`.msi`安装包（注意，是`.msi`安装包，而不是`.exe`），然后按默认方式安装
+# 到`Node`安装目录拷贝`node.exe`、`npm`、`npm.cmd`以及`node_modules`目录到你想要放置的目录，譬如`D:\Node`
+# 卸载掉第一步安装的`Node`
+# 添加环境变量`PATH`：`D:\Node`，`NODE_PATH`：`D:\Node\node_modules`
+# 编辑文件`D:\Node\node_modules\npm\npmrc`，将`{APPDATA}\npm`修改为`{NODE_PATH}\..\`
+
+如此就大功告成了，你可以将`D:\Node`目录打包成`.zip`文档备存
+
+以后如果需要升级`Node`的版本，只需访问官网下载最新的`node.exe`替换掉`D:\Node\node.exe`即可
+----
+<red>date</red> : 2013-05-09、2013-05-11
+----

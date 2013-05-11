@@ -1,0 +1,73 @@
+%title 某公司内部框架分析
+%template discuss
+
+[[../../index|首页]] - [[index|PHP]]
+==某公司内部框架分析==
+----
+===目录结构===
+
+* `common.php`：入口文件
+* `libs/`：框架核心文件
+* `control/`：流程处理文件，全部继承自`cls_control`类
+* `module/`：底层数据处理文件
+* `helper/`：公共函数库
+* `api/`：一些特定模块的处理文件
+* `conf/`：配置文件目录
+* `lang/`：语言包目录
+----
+===入口文件===
+
+定义了两个常量：`COMM_DIR`（框架根目录路径）、`THIS_DATETIME`（当前时间）
+
+加载了以下文件
+* `conf/comm.config.php`：公共模块配置文件，可以开启或关闭`调试模式`、`性能测试模式`
+* `conf/map.config.php`：负责生成控制器加载地图（`conf/map.cache.php`）
+* `libs/cls_model.php`：底层数据库模型类（抽象类）
+* `libs/cls_validation.php`：表单验证类
+* `libs/cls_control.php`：底册控制器类（抽象类），继承自`cls_validation`
+* `libs/cls_entry.php`：公共入口类
+----
+===基本执行流程===
+
+# `common.php`：初始化运行公共模块所需的基本资源
+# `libs/cls_entry.php`：动态加载创建控制器对象，根据`map.cache.php`文件确定客户端请求的处理者
+# `control/`：针对不同的业务流程进行请求的处理
+# `lang/`：返回结果语言包
+# `module/`：负责底层的数据交互，包括增、删、改、查等
+# `Security`：对数据库请求进行安全过滤
+# `Database`：存储数据库
+----
+===通用的返回数据结构===
+
+{{{
+array(
+  'status'    => '执行状态 [1为成功，其余均代表失败]',
+  'error'     => '错误提示 [可选]',
+  'valid'     => '表单验证结果 [可选]',
+  'count'     => '返回的记录条数 [可选]',
+  'page'      => '当前页数 [可选]',
+  'size'      => '分页大小 [可选]',
+  'pagecount' => '总页数 [可选]',
+  'result'    => '返回记录数组 [执行成功时返回]'
+);
+}}}
+----
+===以获取用户信息为例，分析具体执行流程===
+
+测试文件：
+{{{
+require_once './common/common.php';
+
+$uname  = 'CC_xxxxxx';
+$passwd = md5('xxxxxx');
+$user   = cls_entry::load('user')->login($uname, $passwd);
+}}}
+
+# 首先进入`conf/map.config.php`，检查`conf/map.cache.php`文件是否是在`24`小时内生成的，如果是则直接加载该文件，否则重新生成
+# 进入`libs/cls_entry.php`，执行`load`函数，通过全局变量`$INCMAP`取得路由地图，判断控制器`common/control/user/user.php`是否存在，如果存在则加载之
+# 执行`common/control/user/user.php`中的函数`login`，首先使用`$this->load('cls_user', 'usercenter');`加载底层处理模块，然后调用`checkpwd`函数检查传入的密码是否已加密，如果没加密则执行一次加密操作，并返回登录取得的用户数据
+# 使用`$this->load('cls_userinfo', 'usercenter');`加载用户信息表，更新登陆次数以及最近登陆时间
+# 全部处理完成后，使用`$this->result()`返回结果
+----
+<red>date</red> : 2013-05-06
+----
