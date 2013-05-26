@@ -7,9 +7,10 @@ snippet -       分隔注释
 snippet us      严格模式
 	"use strict";${1}
 snippet f       常规函数
-	function ${1:f_name} (${2}) {
+	function ${1:f_name} (${2})
+	{
 	    ${3}
-	}  // function
+	}
 snippet ff      单行匿名函数
 	function (${1}) {${2}}
 snippet wi      with
@@ -31,11 +32,11 @@ snippet el      else
 snippet fo      for
 	for (${1}) {
 	    ${2}
-	}  // for
+	}
 snippet wh      while
 	while (${1}) {
 	    ${2}
-	}  // while
+	}
 snippet do      do .. while
 	do {
 	    ${2}
@@ -43,7 +44,7 @@ snippet do      do .. while
 	while (${1});
 snippet sw      switch
 	switch (${1}) {
-	    ${2}
+	${2}
 	}
 snippet cs      case
 	case ${1}:
@@ -64,14 +65,16 @@ snippet pt      原型
 	prototype${1}
 snippet tp      类型
 	typeof${1}
-snippet th      this
-	this${1}
 snippet p       常用输出
 	document.writeln(${1});
 snippet al      弹出框
 	alert(${1});
 snippet len     获取字符串长度
 	length${1}
+snippet v       var
+	var ${1}
+snippet s       this
+	this${1}
 # 常用函数
 snippet toS     转换为字符串
 	toString(${1});
@@ -85,11 +88,11 @@ snippet paF     转换为浮点数
 	parseFloat(${1});
 ################
 # DOM相关
-snippet gelbi   getElementById
+snippet gebi    getElementById
 	getElementById('${1}')
-snippet gelbtn  getElementByTagName
+snippet gebt    getElementByTagName
 	getElementByTagName('${1}')
-snippet gelbcn  getElementByClassName
+snippet gebc    getElementByClassName
 	getElementByClassName('${1}')
 snippet gat     getAttribute
 	getAttribute('${1}')
@@ -101,4 +104,12 @@ snippet .       jQuery选择器
 	$(${1})
 snippet >       jQuery选择器（带引号）
 	$('${1}')${2}
+################
+# Node平台
+snippet rq      导入包
+	require('${1}');${2}
+snippet ex      导出函数
+	exports.${1}
+snippet cl      输出
+	console.log(${1});
 ################

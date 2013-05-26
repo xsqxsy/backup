@@ -1,0 +1,16 @@
+[user]
+	name = Ruchee
+	email = my@ruchee.com
+[core]
+	editor = vim
+[alias]
+	cm  = commit -a -v
+	cmm = commit -m
+	co  = checkout
+	br  = branch
+	fe  = fetch
+	st  = status
+	re  = remote add origin
+	pu  = push -u origin master
+[github]
+	user = ruchee

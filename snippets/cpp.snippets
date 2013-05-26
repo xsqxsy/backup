@@ -9,8 +9,10 @@ snippet in      包含系统头文件
 	#include <${1}>${2}
 snippet in.     包含自定义头文件
 	#include "${1}"${2}
-snippet ins     包含标准输入输出库
+snippet ini     包含标准输入输出库
 	#include <iostream>${2}
+snippet ins     包含标准输入输出头文件
+	#include <stdio.h>${2}
 snippet df      宏定义
 	#define ${1}
 snippet ifdf    包含了指定头文件时的处理方式
@@ -30,29 +32,25 @@ snippet u       引用命名空间
 snippet us      引用标准命名空间
 	using namespace std;${1}
 snippet na      命名空间
-	namespace ${1:na_name} {
-
+	namespace ${1:na_name}
+	{
 	    ${2}
-
 	}
 snippet cl      类定义
-	class ${1:cl_name} {
-
+	class ${1:cl_name}
+	{
 	    ${2}
-
-	};  // class
+	};
 snippet fc      构造函数
-	${1:f_name} (${2}) ${3}{
-
+	${1:f_name} (${2}) ${3}
+	{
 	    ${4}
-
-	}  // construct
+	}
 snippet fd      析构函数
-	~${1:f_name} () {
-
+	~${1:f_name} ()
+	{
 	    ${3}
-
-	}  // deconstruct
+	}
 # 异常处理
 snippet thr     抛出异常
 	throw ${1};
@@ -70,36 +68,33 @@ snippet fin     善后处理
 	}
 # 函数
 snippet main    主函数
-	int main (int argc, char *argv[]) {
-
+	int main (int argc, char *argv[])
+	{
 	    ${1}
 
 	    return 0;
-
-	}  // main
+	}
 snippet f       函数定义
-	${1:f_name} (${2}) {
-
+	${1:f_name} (${2})
+	{
 	    ${3}
-
-	}  // function
+	}
 snippet cf      类方法定义
-	${1:f_name} (${2}) ${3}{
-
+	${1:f_name} (${2}) ${3}
+	{
 	    ${4}
-
-	}  // function
+	}
 snippet fd      函数声明
 	${1:f_name} (${2});
 # 复合类型
 snippet str     结构体定义
 	struct ${1:str_name} {
 	    ${2}
-	};  // struct
+	};
 snippet uni     共用体
 	union ${1:uni_name} {
 	    ${2}
-	};  // union
+	};
 snippet enu     枚举定义
 	enum ${1:enu_name} {${2}};
 snippet tp      类型定义
@@ -132,11 +127,11 @@ snippet el      else
 snippet fo      for
 	for (${1}) {
 	    ${2}
-	}  // for
+	}
 snippet wh      while
 	while (${1}) {
 	    ${2}
-	}  // while
+	}
 snippet do      do-while
 	do {
 	    ${2}
@@ -144,8 +139,8 @@ snippet do      do-while
 	while (${1});
 snippet sw      switch
 	switch (${1}) {
-	    ${2}
-	}  // switch
+	${2}
+	}
 snippet cs      case
 	case ${1}:
 	    ${2}
@@ -154,9 +149,13 @@ snippet def     default
 	    ${1}
 # 输入输出
 snippet p       输出
-	cout << ${1}
+	printf("${1}"${2});
 snippet s       输入
-	cin >> ${1}
+	scanf("${1}", ${2});
+snippet spr
+	sprintf(${1:stderr}, "${2:%s}", ${3});
+snippet fpr
+	fprintf(${1:stderr}, "${2:%s}"${3});
 # 单个关键字
 snippet pu      公共
 	public${1}

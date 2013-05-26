@@ -1,30 +1,20 @@
 snippet coding  文件编码 [Ruby 2.0不再需要]
 	# encoding: utf-8
+snippet /       单行注释
+	# ${1}
 snippet -       分隔注释
 	# -------------------------------${1}
 snippet =b      嵌入式文档（多行注释）
 	=begin
 	${1}
 	=end
-snippet BEGIN   在程序开始时执行（顺序执行）
-	BEGIN {
-	  ${1}
-	}
-snippet END     在程序结束时执行（反序执行）
-	END {
-	  ${1}
-	}
 # 包含指令
 snippet in      包含Module（对整个类有效）
 	include ${1}
 snippet ex      包含Module（只对调用该方法的单个对象有效）
-	extend(${1})
-snippet im      导入包 [JRuby特有]
-	import ${1}
+	extend ${1}
 snippet rq      包含文件（只加载一次）
 	require '${1}'${2}
-snippet rqr     相对包含文件
-	require_relative '${1}'${2}
 snippet ld      包含文件（可加载多次）
 	load '${1}.rb'${2}
 # 模块、类
@@ -40,38 +30,13 @@ snippet cl      类定义
 	  ${2}
 
 	end  # class
-snippet str     类生成器（Struct.new）
+snippet stn     类生成器（Struct.new）
 	Struct.new(${1})
-# 字符串、代码块
-snippet q       单引号字符串字面量
-	%q{${1}}
-snippet Q       双引号字符串字面量
-	%Q{${1}}
-snippet %       等同于%Q
-	%{${1}}
-snippet w       字符串数组
-	%w{${1}}
-snippet x       相当于``，用于执行操作系统命令
-	%x{${1}}
-snippet r       正则字面量
-	%r{${1}}
-snippet s       Symbol字面量
-	%s{${1}}
-snippet i       Symbol数组 [Ruby2.0新增]
-	%i{${1}}
 snippet doc     多行字符串
 	<<${1:HEREDOC}
 	${2}
 	$1
 # 方法
-snippet pro     Proc.new
-	Proc.new${1}
-snippet la      匿名函数（简写形式）
-	->${1} { ${2} }
-snippet lam     匿名函数
-	lambda ${1}
-snippet la?     是否是一个Lambda
-	lambda?${1}
 snippet d       不带参数
 	def ${1:f_name}
 	  ${2}
@@ -98,11 +63,11 @@ snippet dic.    执行拷贝操作后自动调用（带参数）
 	def initialize_copy (${1})
 	  ${2}
 	end  # func
-snippet dmem    幽灵方法
+snippet dmm     幽灵方法
 	def method_missing (${1})
 	  ${2}
 	end  # func
-snippet dcom    访问不存在常量的情况下调用的幽灵方法
+snippet dcm     访问不存在常量的情况下调用的幽灵方法
 	def const_missing (${1})
 	  ${2}
 	end  # func
@@ -114,10 +79,18 @@ snippet aa      读写方法
 	attr_accessor :${1}
 snippet ca      Proc call
 	call${1}
-snippet puclme  设定public类方法
+snippet puclm   设定public类方法
 	public_class_method :${1}
-snippet prclme  设定private类方法
+snippet prclm   设定private类方法
 	private_class_method :${1}
+snippet prn     Proc.new
+	Proc.new${1}
+snippet l       匿名函数（简写形式）
+	->${1} { ${2} }
+snippet la      匿名函数
+	lambda ${1}
+snippet la?     是否是一个Lambda
+	lambda?${1}
 # 流程控制
 snippet if      if
 	if ${1}
@@ -170,74 +143,16 @@ snippet res     捕获异常
 	rescue ${1}
 snippet ens     善后处理
 	ensure${1}
-snippet msg     异常信息
-	message${1}
-snippet E       Exception
-	Exception ${1}
-snippet Enomem  NoMemoryError
-	NoMemoryError ${1}
-snippet Esc     ScriptError
-	ScriptError ${1}
-snippet Eload   LoadError
-	LoadError ${1}
-snippet Enoti   NotImplementedError
-	NotImplementedError ${1}
-snippet Esyn    SyntaxError
-	SyntaxError ${1}
-snippet Ese     SecurityError
-	SecurityError ${1}
-snippet Esig    SignalException
-	SignalException ${1}
-snippet Eint    Interrupt
-	Interrupt ${1}
-snippet Esys    SystemExit
-	SystemExit ${1}
-snippet Esysst  SystemStackError
-	SystemStackError ${1}
-snippet Estd    StandardError
-	StandardError ${1}
-snippet Earg    ArgumentError
-	ArgumentError ${1}
-snippet Efib    FiberError
-	FiberError ${1}
-snippet Eio     IOError
-	IOError ${1}
-snippet Eeof    EOFError
-	EOFError ${1}
-snippet Eindex  IndexError
-	IndexError ${1}
-snippet Ekey    KeyError
-	KeyError ${1}
-snippet Estop   StopIteration
-	StopIteration ${1}
-snippet Elocal  LocalJumpError
-	LocalJumpError ${1}
-snippet Ena     NameError
-	NameError ${1}
-snippet Enome   NoMethodError
-	NoMethodError ${1}
-snippet Era     RangeError
-	RangeError ${1}
-snippet Efloat  FloatDomainError
-	FloatDomainError ${1}
-snippet Ere     RegexpError
-	RegexpError ${1}
-snippet Erun    RuntimeError
-	RuntimeError ${1}
-snippet Esysc   SystemCallError
-	SystemCallError ${1}
-snippet Eth     ThreadError
-	ThreadError ${1}
-snippet Etype   TypeError
-	TypeError ${1}
-snippet Ezero   ZeroDivisionError
-	ZeroDivisionError ${1}
 snippet thr     发出跳转执行流程的“信号”
 	throw ${1}
 snippet cat     捕获跳转“信号”，执行跳转
 	catch ${1} do
 	  ${2}
 	end  # do
+snippet msg     异常信息
+	message${1}
+snippet E       Exception
+	Exception ${1}
 # 迭代器
 snippet lo      loop
 	loop ${1}
@@ -253,7 +168,7 @@ snippet bet?    是否位于...之间
 	between?${1}
 snippet toa     转成数组
 	to_a${1}
-snippet toh     转换成Hash [2.x新增]
+snippet toh     转换成Hash [Ruby 2.0新增]
 	to_h${1}
 snippet toi     转成整数
 	to_i${1}
@@ -273,19 +188,19 @@ snippet enf     to_enum的别名
 	enum_for${1}
 snippet e       each
 	each ${1}
-snippet eawi    each_with_index
+snippet ewi     each_with_index
 	each_with_index ${1}
 snippet wi      with_index
 	with_index ${1}
-snippet eab     each_byte
+snippet eb      each_byte
 	each_byte ${1}
-snippet eac     each_char
+snippet ec      each_char
 	each_char ${1}
-snippet eal     each_line
+snippet el      each_line
 	each_line ${1}
-snippet eap     传递键值分离的哈希对
+snippet ep      传递键值分离的哈希对
 	each_pair ${1}
-snippet eas     each_slice
+snippet es      each_slice
 	each_slice ${1}
 # 刷选
 snippet gr      grep
@@ -326,10 +241,6 @@ snippet mi      min
 snippet mib     min_by
 	min_by ${1}
 # 反射
-snippet inmo    获取包含的类
-	included_modules${1}
-snippet me      对象的方法
-	methods${1}
 snippet glv     全局变量
 	global_variables${1}
 snippet lov     局部变量
@@ -350,15 +261,11 @@ snippet insv    实例变量
 	instance_variables${1}
 snippet insvd?  判断实例变量是否已定义
 	instance_variable_defined? ${1}
-snippet inse    在对象上下文解释字符串
-	instance_eval${1}
-snippet cle     在类上下文解释字符串
-	class_eval${1}
 snippet inso?   是否是类本身的实例（可用==代替）
 	instance_of? ${1}
 snippet isa?    是否是类某个子类的实例（可用===代替）
 	is_a? ${1}
-snippet ret?    是否有这个方法
+snippet rest?   是否有这个方法
 	respond_to? :${1}
 snippet fre     冻结一个对象
 	freeze${1}
@@ -368,6 +275,8 @@ snippet in?     给定值是否处于范围之内
 	include? ${1}
 snippet mb?     include?的别名
 	member? ${1}
+snippet me      对象的方法
+	methods${1}
 # 字符串相关
 snippet cap     首字母大写
 	capitalize${1}
@@ -407,8 +316,6 @@ snippet rt      重新开始执行当前迭代
 	retry${1}
 snippet yi      返回但不退出、执行代码块
 	yield${1}
-snippet blg?    是否有传递代码块
-	block_given?${1}
 snippet du      对象克隆
 	dup${1}
 snippet su      super
@@ -447,10 +354,6 @@ snippet pf      格式化输出
 	printf "${1}"${2}
 snippet spr     格式化（本身不会输出，返回填充好的字符串）
 	sprintf "${1}"${2}
-snippet /       正则匹配
-	/${1}/${2}
-snippet |       | .. |
-	|${1}| ${2}
 snippet _       __NAME__
 	__${1:LINE}__
 snippet _i      object_id
@@ -459,18 +362,22 @@ snippet _e      文件结束
 	__END__${1}
 snippet _l      当前代码行号
 	__LINE__${1}
-snippet _d      文件所在路径，不含文件名 [2.x新增]
+snippet _d      文件所在路径，不含文件名 [Ruby 2.0新增]
 	__dir__${1}
 snippet _f      当前文件名（__dir__ + '/' + __FILE__ 就是完整的路径了）
 	__FILE__${1}
 snippet _en     当前文件编码
 	__ENCODING__${1}
-snippet se      self
+snippet s       self
 	self${1}
-snippet <       { ... }
+snippet |       | .. |
+	|${1}| ${2}
+snippet <       { .. }
 	{ ${1} }
-snippet .       =>
+snippet >       =>
 	=> ${1}
+snippet .       %x{ .. }
+	%${1}{${2}}
 # 常用模块
 snippet Enu     迭代器
 	Enumerable${1}
@@ -481,59 +388,3 @@ snippet Obs     观察者
 snippet Sin     单键
 	Singleton${1}
 ################
-# Rails框架
-snippet r_ret   转向
-	redirect_to${1}
-snippet r_upa   更新字段
-	update_attributes${1}
-# Controller
-snippet r_bef   重用控制器方法
-	before_filter :${1}
-snippet r_rspt  响应请求
-	respond_to ${1}
-# Model
-snippet r_adc   增加数据表字段
-	add_column :${1}
-snippet r_ham   一对多
-	has_many :${1}
-snippet r_bet   多对一
-	belongs_to :${1}
-snippet r_des   默认行为
-	default_scope :${1}
-snippet r_bed   删除之前的设定
-	before_destroy :${1}
-snippet r_va    数据验证
-	validates :${1}
-snippet r_pre   数据验证：非空
-	:presence => ${1}
-snippet r_num   数据验证：数字
-	:numericality => ${1}
-snippet r_vapo  数据验证：必填
-	validates_presence_of :${1}
-snippet r_uni   数据验证：唯一
-	:uniqueness => ${1}
-snippet r_grtoe 数据验证：大于或等于
-	:greater_than_or_equal_to => ${1}
-snippet r_mes   提示信息
-	:message => ${1}
-snippet r_for   格式
-	:format => ${1}
-# View
-snippet r_fl    显示提示信息
-	flash[:${1}]
-# Test
-snippet r_as    断言
-	assert ${1}
-snippet r_ase   相等性测试
-	assert_equal ${1}
-snippet r_asr   响应测试
-	assert_response :${1}
-snippet r_ass   包含测试
-	assert_select ${1}
-snippet r_asd   差异测试
-	assert_difference${1}
-snippet r_fix   静态测试
-	fixtures :${1}
-# Config
-snippet r_res   资源路由
-	resources :${1}

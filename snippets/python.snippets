@@ -2,14 +2,14 @@ snippet coding  指定编码
 	# -*- coding: utf-8 -*-${1}
 snippet /       单行注释
 	# ${1}
-snippet -       分隔注释
-	# -------------------------------${1}
 snippet //      文档字符串、块注释
 	""" ${1} """
 snippet //.     文档字符串（跨行）
 	"""
 	${1}
 	"""
+snippet -       分隔注释
+	# -------------------------------${1}
 snippet im      导入模块
 	import ${1}
 snippet imf     导入 .. 从 ..
@@ -20,7 +20,7 @@ snippet rl      重新载入
 	reload(${1})
 snippet ifm     作为独立程序运行
 	if __name__ == '__main__':
-	  ${1}
+	    ${1}
 # 字符串
 snippet r       不解释转义字符
 	r'${1}'
@@ -30,23 +30,23 @@ snippet u       Unicode字符串
 snippet cl      类定义（不带括号）
 	class ${1:cl_name}:
 	
-	  ${2}
+	    ${2}
 snippet cl.     类定义（带括号）
 	class ${1:cl_name} (${2}):
 
-	  ${3}
+	    ${3}
 snippet d       函数定义（不带self）
 	def ${1:f_name} (${2}):
-	  ${3}
+	    ${3}
 snippet ds      方法定义（带self）
 	def ${1:f_name} (self${2}):
-	  ${3}
+	    ${3}
 snippet di      初始化方法
 	def __init__ (self${1}):
-	  ${2}
+	    ${2}
 snippet dd      析构方法
 	def __del__ (self${1}):
-	  ${2}
+	    ${2}
 snippet la      匿名函数
 	lambda ${1}
 snippet su      引用父类
@@ -54,19 +54,19 @@ snippet su      引用父类
 # 流程控制
 snippet if      if
 	if ${1}:
-	  ${2}
+	    ${2}
 snippet elif    elif
 	elif ${1}:
-	  ${2}
+	    ${2}
 snippet el      else
 	else:
-	  ${1}
+	    ${1}
 snippet fo      for .. in
 	for ${1} in ${2}:
-	  ${3}
+	    ${3}
 snippet wh      while
 	while ${1}:
-	  ${2}
+	    ${2}
 # 异常处理
 snippet ra      抛出异常
 	raise ${1}
@@ -74,13 +74,13 @@ snippet as      设置断言
 	assert ${1}
 snippet try     捕获异常
 	try:
-	  ${1}
+	    ${1}
 snippet exp     处理异常
 	except ${1}:
-	  ${2}
+	    ${2}
 snippet fin     善后处理
 	finally:
-	  ${1}
+	    ${1}
 # 单个关键字
 snippet gl      引用全局变量
 	global${1}
@@ -100,49 +100,49 @@ snippet p.      输出（带括号）
 	print(${1})
 snippet ri      获取输入
 	raw_input(${1})
-snippet s       self
+snippet .       self
 	self${1}
-snippet .       __xxx__
+snippet _       __xxx__
 	__${1:init}__${2}
 ################
 # Django框架
-snippet clm
+snippet d_clm   元类
 	class Meta:
 	    ordering = ['${1}']${2}
-snippet du
+snippet du      unicode方法
 	def __unicode__(self):
 	    return self.${1}
-snippet d_in 整数
+# Model
+snippet d_in    整数
 	IntegerField()${2}
-snippet d_ch 字符
+snippet d_ch    字符
 	CharField(${1})${2}
-snippet d_tx 文本
+snippet d_tx    文本
 	TextField()${1}
-snippet d_d 时间1
+snippet d_d     时间1
 	DateField()${1}
-snippet d_dt 时间2
+snippet d_dt    时间2
 	DateTimeField(${1})${2}
-snippet d_im 图像
+snippet d_im    图像
 	ImageField(${1})${2}
-snippet d_ur 链接
+snippet d_ur    链接
 	URLField()${1}
-snippet d_em 邮箱
+snippet d_em    邮箱
 	EmailField()${1}
-snippet d_fk 外键
+snippet d_fk    外键
 	ForeignKey(${1})${2}
-snippet d_mtm 多对多
+snippet d_mtm   多对多
 	ManyToManyField(${1})${2}
-snippet d_ml 最大值
+snippet d_ml    最大值
 	max_length=${1}
-snippet d_ut 上传位置
+snippet d_ut    上传位置
 	upload_to=${1}
-snippet d_bl 留空
+snippet d_bl    留空
 	blank=${1}
-snippet d_rtr 模板渲染
+# View
+snippet d_rtr   模板渲染
 	render_to_response('${1}')${2}
-snippet d_goo 404错误
+snippet d_goo   404错误
 	get_object_or_404(${1})${2}
-snippet d_hrr
+snippet d_hrr   转向
 	HttpResponseRedirect(${1})${2}
-################
-# wxPython框架

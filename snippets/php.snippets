@@ -12,10 +12,6 @@ snippet php.    跨行标签
 	${1}
 
 	?>
-snippet pe      输出标签
-	<?php echo ${1}; ?>
-snippet pp      输出标签 [PHP 5.4起默认可用]
-	<?= ${1} ?>
 snippet doc     跨行文本
 	<<<${1:}
 	${2}
@@ -24,7 +20,8 @@ snippet doc     跨行文本
 snippet na      命名空间（行语法）
 	namespace ${1};${2}
 snippet na.     命名空间（大括号语法）
-	namespace${1} {
+	namespace${1}
+	{
 	    ${2}
 	}
 snippet u       设置别名
@@ -44,45 +41,40 @@ snippet df      定义常量
 	define('${1}', ${2});${3}
 # 接口、类、方法
 snippet int     接口定义
-	interface ${1:int_name} {
-
+	interface ${1:int_name}
+	{
 	    ${2}
-
-	}  // interface
+	}
 snippet cl      类定义
-	class ${1:cl_name} {
-
+	class ${1:cl_name}
+	{
 	    ${2}
-
-	}  // class
+	}
 snippet cle     带继承的类定义
-	class ${1:cl_nameA} extends ${2:cl_nameB} {
-
+	class ${1:cl_nameA} extends ${2:cl_nameB}
+	{
 	    ${3}
-
-	}  // class
+	}
 snippet cli     实现接口的类定义
-	class ${1:cl_name} implements ${2:cl_intName} {
-
+	class ${1:cl_name} implements ${2:cl_intName}
+	{
 	    ${3}
-
-	}  // class
+	}
 snippet clei    先继承后实现接口的类定义
-	class ${1:cl_nameA} extends ${2:cl_nameB} implements ${3:cl_intName} {
-
+	class ${1:cl_nameA} extends ${2:cl_nameB} implements ${3:cl_intName}
+	{
 	    ${4}
-
-	}  // class
+	}
 snippet clee    继承异常类
-	class ${1:cl_name} extends Exception {
-
+	class ${1:cl_name} extends Exception
+	{
 	    ${2}
-
-	}  // class
+	}
 snippet f       函数定义
-	function ${1:f_name} (${2}) {
+	function ${1:f_name} (${2})
+	{
 	    ${3}
-	}  // function
+	}
 snippet ff      匿名函数（不换行）
 	function (${1}) {${2}}
 snippet ffu     带use子句的匿名函数
@@ -90,45 +82,55 @@ snippet ffu     带use子句的匿名函数
 snippet abf     用于声明抽象方法
 	abstract function ${1:f_name} (${2});${3}
 snippet fc      构造方法
-	function __construct (${1}) {
+	function __construct (${1})
+	{
 	    ${2}
-	}  // function
+	}
 snippet fd      析构方法
-	function __destruct () {
+	function __destruct ()
+	{
 	    ${1}
-	}  // function
+	}
 snippet fcl     克隆方法
-	function __clone () {
+	function __clone ()
+	{
 	    ${1}
-	}  // function
-snippet fto     将类当作字符串打印
-	function __toString (${1}) {
+	}
+snippet fts     将类当作字符串打印
+	function __toString (${1})
+	{
 	    ${2}
-	}  // function
-snippet fau     自动加载
-	function __autoload (${1}) {
+	}
+snippet fal     自动加载
+	function __autoload (${1})
+	{
 	    ${2}
-	}  // function
+	}
 snippet fge     __get()：访问未定义的属性时被调用
-	function __get (${1:property}) {
+	function __get (${1:property})
+	{
 	    ${2}
-	}  // function
+	}
 snippet fse     __set()：给未定义的属性赋值时被调用
-	function __set (${1:property}, ${2:value}) {
+	function __set (${1:property}, ${2:value})
+	{
 	    ${3}
-	}  // function
+	}
 snippet fca     __call()：调用未定义的方法时被调用
-	function __call (${1:$methodname}, ${2:args}) {
+	function __call (${1:$methodname}, ${2:args})
+	{
 	    ${3}
-	}  // function
+	}
 snippet fis     __isset()：对未定义的属性调用isset()时被调用
-	function __isset (${1:property}) {
+	function __isset (${1:property})
+	{
 	    ${2}
-	}  // function
+	}
 snippet fus     __unset()：对未定义的属性调用unset()时被调用
-	function __unset (${1:property}) {
+	function __unset (${1:property})
+	{
 	    ${2}
-	}  // function
+	}
 # 流程控制
 snippet if      if
 	if (${1}) {
@@ -145,15 +147,15 @@ snippet el      else
 snippet fo      for循环
 	for (${1}) {
 	    ${2}
-	}  // for
+	}
 snippet fe      foreach迭代
 	foreach (${1}) {
 	    ${2}
-	}  // foreach
+	}
 snippet wh      while循环
 	while (${1}) {
 	    ${2}
-	}  // while
+	}
 snippet do      do .. while
 	do {
 	    ${2}
@@ -161,7 +163,7 @@ snippet do      do .. while
 	while (${1});
 snippet sw      switch
 	switch (${1}) {
-	    ${2}
+	${2}
 	}
 snippet cs      case
 	case ${1}:
@@ -314,10 +316,12 @@ snippet ex      结束
 	exit(${1});
 snippet ins     检查对象是否是指定类的实例
 	instanceof ${1}
-snippet s       self::
+snippet se      self::
 	self::${1}
-snippet .      $this->
+snippet s       $this->
 	$this->${1}
+snippet .       =>
+	=> ${1}
 # 预定义常量
 snippet _       __ ... __
 	__${1}__
@@ -334,34 +338,6 @@ snippet _cl     __CLASS__
 snippet _na     __NAMESPACE__
 	__NAMESPACE__${1}
 #### 常用函数 ####
-# 类型相关
-snippet gett    取得变量类型
-	gettype(${1})
-snippet sett    设置变量类型
-	settype(${1})
-snippet isin    是否是整数
-	is_int(${1})
-snippet isfl    是否是浮点数
-	is_float(${1})
-snippet isbo    是否是布尔值
-	is_bool(${1})
-snippet isst    是否是字符串
-	is_string(${1})
-snippet isar    是否是数组
-	is_array(${1})
-snippet isob    是否是对象
-	is_object(${1})
-snippet isre    是否是资源
-	is_resource(${1})
-snippet issc    是否是标量
-	is_scalar(${1})
-snippet isnm    是否是数字或数字字符串
-	is_numeric(${1})
-snippet isca    是否是有效的函数名
-	is_callable(${1})
-snippet isnu    是否为空
-	is_null(${1})
-# 重要函数
 snippet ra      数组生成器
 	range(${1}, ${2})
 snippet ar      定义数组
@@ -370,16 +346,35 @@ snippet exp     字符串分割
 	explode('${1}', ${2})
 snippet imp     字符串组合
 	implode('${1}', ${2})
-snippet bc      数值的任意进制转换
-	base_convert(${1:num}, ${2:from}, ${3:to})
-snippet jse     JSON数据的编码
+snippet jen     JSON数据的编码
 	json_encode(${1})
-snippet jsd     JSON数据的解码
+snippet jde     JSON数据的解码
 	json_decode(${1})
+#### 模板标签 ####
+snippet pe      输出标签
+	<?php echo ${1}; ?>
+snippet pp      输出标签 [PHP 5.4起默认可用]
+	<?= ${1} ?>
+snippet pif     if标签
+	<?php if (${1}): ?>
+	${2}
+	<?php endif ?>
+snippet pelif   elseif标签
+	<?php elseif (${1}): ?>
+snippet pel     else标签
+	<?php else: ?>${1}
+snippet pfo     for标签
+	<?php for (${1}): ?>
+	${2}
+	<?php endfor ?>
+snippet pfe     foreach标签
+	<?php foreach (${1}): ?>
+	${2}
+	<?php endforeach ?>
+snippet pen     end标签
+	<?php end${1} ?>
 ################
 # Smarty模板引擎
-snippet sm_cl    加载配置
-	$smarty->configLoad('${1}');
 snippet sm_as    传递变量
 	$smarty->assign('${1}', ${2});
 snippet sm_di    模板渲染

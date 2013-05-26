@@ -1,0 +1,39 @@
+# CodeIgniter框架
+snippet ci_ll    加载类库
+	$this->load->library('${1}');
+snippet ci_lm    加载模型
+	$this->load->model('${1}');
+snippet ci_lv    加载视图
+	$this->load->view('${1}'${2});
+snippet ci_lh    加载辅助函数
+	$this->load->helper('${1}');
+snippet ci_ld    加载数据库
+	$this->load->database();${1}
+snippet ci_ldf   加载数据库维护
+	$this->load->dbforge();${1}
+snippet ci_cl    加载配置文件
+	$this->config->load('${1}');
+snippet ci_ci    获取配置项
+	$this->config->item('${1}');
+snippet ci_csi   设置配置项
+	$this->config->set_item('${1}', '${2}');
+# CodeIgniter辅助函数
+snippet ci_msg   写入日志
+	log_message('${1}');
+snippet ci_err   显示错误信息
+	show_error('${1}');
+snippet ci_404   显示404页面
+	show_404();${1}
+snippet ci_coi   获取配置项
+	config_item('${1}');
+snippet ci_sur   基于首页的地址
+	site_url('${1}');
+snippet ci_bur   网站基准地址
+	base_url();${1}
+snippet ci_cur   当前地址
+	current_url();${1}
+snippet ci_uti   从字符串生成URL字串
+	url_title(${1});
+snippet ci_red   转向
+	redirect('${1}', '${2:refresh}');
+################

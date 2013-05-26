@@ -1,15 +1,20 @@
+snippet /       单行注释
+	# ${1}
 snippet //      多行注释
 	###
 	${1}
 	###
 snippet -       分隔注释
 	# -------------------------------${1}
-snippet /       正则
-	/${1}/${2}
 snippet ///     多行正则（可分多行，可加注释）
 	///${1}///
 snippet doc     """ .. """
 	"""${1}"""
+# 模块
+snippet rq      导入包
+	require '${1}'${2}
+snippet ex      导出函数
+	exports.${1}
 # 类
 snippet cl      类定义
 	class ${1:cl_name}
@@ -29,7 +34,7 @@ snippet ff      匿名函数（带参数）
 # 流程控制
 snippet if      if
 	if ${1}
-snippet t       then
+snippet the     then
 	then ${1}
 snippet elif    else if
 	else if ${1}
@@ -60,15 +65,13 @@ snippet thr     抛出异常
 	throw ${1}
 snippet try     捕获异常
 	try
-	    ${1}
+	  ${1}
 snippet cat     处理异常
 	catch ${1}
 snippet fin     善后处理
 	finally
-	    ${1}
+	  ${1}
 # 单个关键字
-snippet rq      require
-	require '${1}'${2}
 snippet th      this
 	this${1}
 snippet tp      类型检查
@@ -87,3 +90,7 @@ snippet p       输出
 	console.log ${1}
 snippet .       ->
 	->${1}
+snippet >       jQuery选择器
+	$(${1})
+snippet >>      jQuery选择器（带引号）
+	$('${1}')${2}
